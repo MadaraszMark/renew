@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+<title>Termékek - ReNew</title>
+
+<!-- Google font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
+	rel="stylesheet">
+
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="css/slick.css" />
+<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links pull-left">
+					<li><a href="#"><i class="fa fa-phone"></i> +36 70 234
+							9876</a></li>
+					<li><a href="#"><i class="fa fa-envelope-o"></i>
+							info@renew.hu</a></li>
+					<li><a href="#"><i class="fa fa-map-marker"></i> 6000,
+							Kecskemét Fő utca 21.</a></li>
+				</ul>
+				<ul class="header-links pull-right" id="authLinks">
+					<li><a href="/auth/register.html"><i
+							class="fa fa-user-plus"></i> Regisztráció</a></li>
+					<li><a href="/auth/login.html"><i class="fa fa-sign-in"></i>
+							Bejelentkezés</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /TOP HEADER -->
+
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="/" class="logo"> <img src="./img/logo.png" alt="">
+							</a>
+						</div>
+					</div>
+					<!-- /LOGO -->
+
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form>
+								<select class="input-select">
+									<option value="0">Kategóriák</option>
+									<option value="1">Kategória 01</option>
+									<option value="1">Kategória 02</option>
+								</select> <input class="input" placeholder="Keresés...">
+								<button class="search-btn">Keres</button>
+							</form>
+						</div>
+					</div>
+					<!-- /SEARCH BAR -->
+
+					<!-- ACCOUNT -->
+					<div class="col-md-3 clearfix">
+						<div class="header-ctn">
+							<!-- Wishlist -->
+							<div>
+								<a href="#"> <i class="fa fa-heart-o"></i> <span>Kívánságlista</span>
+									<div class="qty">2</div>
+								</a>
+							</div>
+							<!-- /Wishlist -->
+
+							<!-- Cart -->
+							<div class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown"
+									aria-expanded="true"> <i class="fa fa-shopping-cart"></i> <span>Kosár</span>
+									<div class="qty">0</div>
+								</a>
+								<div class="cart-dropdown">
+									<div class="cart-list">
+										<!-- A termékek dinamikusan kerülnek majd ide -->
+									</div>
+									<div class="cart-summary">
+										<small>Nincs termék a kosárban</small>
+										<h5>Összesen: 0 Ft</h5>
+									</div>
+									<div class="cart-btns">
+										<a href="#">Kosár</a> <a href="#">Fizetés <i
+											class="fa fa-arrow-circle-right"></i></a>
+									</div>
+								</div>
+							</div>
+
+							<!-- /Cart -->
+
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#"> <i class="fa fa-bars"></i> <span>Főoldal</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
+						</div>
+					</div>
+					<!-- /ACCOUNT -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+
+	<!-- NAVIGATION -->
+	<nav id="navigation">
+		<!-- container -->
+		<div class="container">
+			<!-- responsive-nav -->
+			<div id="responsive-nav">
+				<!-- NAV -->
+				<ul class="main-nav nav navbar-nav" id="navLinks">
+				<li><a href="/">Főoldal</a></li>
+					<li class="active"><a href="/store">Termékek</a></li>
+					<li><a href="/about">Rólunk</a></li>
+					<li><a href="/">Kapcsolat</a></li>
+				</ul>
+				<!-- /NAV -->
+			</div>
+			<!-- /responsive-nav -->
+		</div>
+		<!-- /container -->
+	</nav>
+	<!-- /NAVIGATION -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- ASIDE -->
+				<div id="aside" class="col-md-3">
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Kategóriák</h3>
+						<div class="checkbox-filter">
+
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-1"> <label
+									for="category-1"> <span></span> Irodai laptopok
+								</label>
+							</div>
+
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-2"> <label
+									for="category-2"> <span></span> Üzleti laptopok
+								</label>
+							</div>
+
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-3"> <label
+									for="category-3"> <span></span> Gamer laptopok
+								</label>
+							</div>
+
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-4"> <label
+									for="category-4"> <span></span> Prémium laptopok
+								</label>
+							</div>
+
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-5"> <label
+									for="category-5"> <span></span> Ultrabookok
+								</label>
+							</div>
+
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-6"> <label
+									for="category-6"> <span></span> Smartphones <small>(740)</small>
+								</label>
+							</div>
+						</div>
+					</div>
+					<!-- /aside Widget -->
+
+					<!-- Ár szűrő Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Ár (Ft)</h3>
+						<div class="price-filter">
+							<div id="price-slider"></div>
+
+							<div class="input-number price-min">
+								<input id="price-min" type="number" value="10000" min="10000"
+									max="999000" step="1000"> <span class="qty-up">+</span>
+								<span class="qty-down">-</span>
+							</div>
+
+							<span>-</span>
+
+							<div class="input-number price-max">
+								<input id="price-max" type="number" value="999000" min="10000"
+									max="999000" step="1000"> <span class="qty-up">+</span>
+								<span class="qty-down">-</span>
+							</div>
+						</div>
+						<small>Az árak forintban (Ft) értendők.</small>
+					</div>
+					<!-- /Ár szűrő Widget -->
+
+
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Márkáink</h3>
+						<div class="checkbox-filter">
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-1"> <label
+									for="brand-1"> <span></span> HP
+								</label>
+							</div>
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-2"> <label
+									for="brand-2"> <span></span> Dell
+								</label>
+							</div>
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-3"> <label
+									for="brand-3"> <span></span> Lenovo
+								</label>
+							</div>
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-4"> <label
+									for="brand-4"> <span></span> Asus
+								</label>
+							</div>
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-5"> <label
+									for="brand-5"> <span></span> Acer
+								</label>
+							</div>
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-6"> <label
+									for="brand-6"> <span></span> Apple
+								</label>
+							</div>
+						</div>
+					</div>
+					<!-- /aside Widget -->
+
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Legnépszerűbb laptopok</h3>
+						<div class="product-widget">
+							<div class="product-img">
+								<img src="./img/product01.png" alt="">
+							</div>
+							<div class="product-body">
+								<p class="product-category">Üzleti laptop</p>
+								<h3 class="product-name">
+									<a href="#">HP EliteBook 840 G3</a>
+								</h3>
+								<h4 class="product-price">
+									209.900 Ft
+									<del class="product-old-price">239.900 Ft</del>
+								</h4>
+							</div>
+						</div>
+
+						<div class="product-widget">
+							<div class="product-img">
+								<img src="./img/product02.png" alt="">
+							</div>
+							<div class="product-body">
+								<p class="product-category">Ultrabook</p>
+								<h3 class="product-name">
+									<a href="#">MacBook Air M1</a>
+								</h3>
+								<h4 class="product-price">
+									359.900 Ft
+									<del class="product-old-price">399.900 Ft</del>
+								</h4>
+							</div>
+						</div>
+
+						<div class="product-widget">
+							<div class="product-img">
+								<img src="./img/product03.png" alt="">
+							</div>
+							<div class="product-body">
+								<p class="product-category">Irodai laptop</p>
+								<h3 class="product-name">
+									<a href="#">HP ProBook 450 G5</a>
+								</h3>
+								<h4 class="product-price">
+									219.800 Ft
+									<del class="product-old-price">249.900 Ft</del>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<!-- /aside Widget -->
+				</div>
+				<!-- /ASIDE -->
+
+				<!-- STORE -->
+				<div id="store" class="col-md-9">
+					<!-- store top filter -->
+					<div class="store-filter clearfix">
+						<div class="store-sort">
+							<label> Rendezés: <select class="input-select">
+									<option value="0">Népszerűség szerint</option>
+									<option value="1">Ár szerint növekvő</option>
+									<option value="2">Ár szerint csökkenő</option>
+							</select>
+							</label> <label> Megjelenítés: <select class="input-select">
+									<option value="0">5 termék</option>
+									<option value="1">10 termék</option>
+									<option value="2">15 termék</option>
+							</select>
+							</label>
+						</div>
+						<ul class="store-grid">
+							<li class="active"><i class="fa fa-th"></i></li>
+							<li><a href="#"><i class="fa fa-th-list"></i></a></li>
+						</ul>
+					</div>
+					<!-- /store top filter -->
+
+					<!-- TERMÉKLISTA -->
+					<div class="row" id="product-list">
+						<div class="col-md-12 text-center" style="padding: 50px 0;">
+							<h4>Jelenleg nincs megjeleníthető termék.</h4>
+							<p>A termékek feltöltés alatt állnak. Kérjük, nézz vissza
+								később!</p>
+						</div>
+					</div>
+					<!-- /TERMÉKLISTA -->
+
+
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<span class="store-qty">5-15 termék megjelenítve</span>
+						<ul class="store-pagination">
+							<li class="active">1</li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+						</ul>
+					</div>
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /STORE -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<!-- NEWSLETTER -->
+	<div id="newsletter" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="newsletter">
+						<p>
+							Iratkozz fel a <strong>HÍRLEVELÜNKRE</strong>
+						</p>
+						<form>
+							<input class="input" type="email" placeholder="Add meg az e-mail címed">
+							<button class="newsletter-btn">
+								<i class="fa fa-envelope"></i> Feliratkozás
+							</button>
+						</form>
+						<ul class="newsletter-follow">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /NEWSLETTER -->
+
+	<!-- FOOTER -->
+	<footer id="footer">
+		<!-- top footer -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Rólunk</h3>
+							<p>A ReNew Kft. felújított, minőségi laptopokkal foglalkozik, garanciával és kedvező árakkal.</p>
+							<ul class="footer-links">
+								<li><a href="#"><i class="fa fa-map-marker"></i>6000
+										Kecskemét, Fő utca 21.</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i>+36 20 123 4567</a></li>
+								<li><a href="#"><i class="fa fa-envelope-o"></i>info@renew.hu</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Kategóriák</h3>
+							<ul class="footer-links">
+								<li><a href="#">Akciós termékek</a></li>
+								<li><a href="#">Irodai laptopok</a></li>
+								<li><a href="#">Üzleti laptopok</a></li>
+								<li><a href="#">Gamer laptopok</a></li>
+								<li><a href="#">Prémium modellek</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="clearfix visible-xs"></div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Információ</h3>
+							<ul class="footer-links">
+								<li><a href="#">Rólunk</a></li>
+								<li><a href="#">Kapcsolat</a></li>
+								<li><a href="#">Adatvédelmi irányelvek</a></li>
+								<li><a href="#">Szállítás és visszaküldés</a></li>
+								<li><a href="#">Felhasználási feltételek</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Szolgáltatások</h3>
+							<ul class="footer-links">
+								<li><a href="#">Fiókom</a></li>
+								<li><a href="#">Kosár</a></li>
+								<li><a href="#">Kívánságlista</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /top footer -->
+
+		<!-- bottom footer -->
+		<div id="bottom-footer" class="section">
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<ul class="footer-payments">
+							<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+							<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+						</ul>
+						<span class="copyright"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+							ReNew Kft. – Minden jog fenntartva. <i
+							class="fa fa-heart-o" aria-hidden="true"></i> Készítette <a
+							href="https://colorlib.com" target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</span>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /bottom footer -->
+	</footer>
+	<!-- /FOOTER -->
+	
+	<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const productList = document.getElementById("product-list");
+
+    fetch("/api/laptops")
+        .then(res => {
+            if (!res.ok) throw new Error("Hiba a szerverrel!");
+            return res.json();
+        })
+        .then(data => {
+            if (!data || !data.content || data.content.length === 0) {
+                productList.innerHTML = `
+                    <div class="col-md-12 text-center" style="padding: 50px 0;">
+                        <h4>Jelenleg nincs megjeleníthető termék.</h4>
+                        <p>A termékek feltöltés alatt állnak. Kérjük, nézz vissza később!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 🔄 generáljuk a termékkártyákat
+            productList.innerHTML = data.content.map(laptop => `
+                <div class="col-md-4 col-xs-6">
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="img/product-placeholder.png" alt="${laptop.tipus}">
+                            <div class="product-label">
+                                <span class="new">NEW</span>
+                            </div>
+                        </div>
+                        <div class="product-body">
+                            <p class="product-category">${laptop.operatingSystemName || '—'}</p>
+                            <h3 class="product-name"><a href="#">${laptop.gyarto} ${laptop.tipus}</a></h3>
+                            <h4 class="product-price">${laptop.ar ? laptop.ar.toLocaleString()} Ft</h4>
+                            <div class="product-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <div class="product-btns">
+                                <button class="add-to-wishlist">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span class="tooltipp">Kívánságlistára</span>
+                                </button>
+                                <button class="quick-view">
+                                    <i class="fa fa-eye"></i>
+                                    <span class="tooltipp">Részletek</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="add-to-cart">
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Kosárba</button>
+                        </div>
+                    </div>
+                </div>
+            `).join("");
+        })
+        .catch(err => {
+            console.error(err);
+            productList.innerHTML = `
+                <div class="col-md-12 text-center" style="padding: 50px 0;">
+                    <h4>Hiba történt a termékek betöltésekor!</h4>
+                    <p>${err.message}</p>
+                </div>
+            `;
+        });
+});
+</script>
+	
+
+	<!-- jQuery Plugins -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/nouislider.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+</html>

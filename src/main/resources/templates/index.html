@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+<title>Főoldal - ReNew</title>
+
+<!-- Google font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
+	rel="stylesheet">
+
+<!-- Bootstrap -->
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+<!-- Slick -->
+<link type="text/css" rel="stylesheet" href="css/slick.css" />
+<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+
+<!-- nouislider -->
+<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="css/font-awesome.min.css">
+
+<!-- Custom stlylesheet -->
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links pull-left">
+					<li><a href="#"><i class="fa fa-phone"></i> +36 70 234
+							9876</a></li>
+					<li><a href="#"><i class="fa fa-envelope-o"></i>
+							info@renew.hu</a></li>
+					<li><a href="#"><i class="fa fa-map-marker"></i> 6000,
+							Kecskemét Fő utca 21.</a></li>
+				</ul>
+				<ul class="header-links pull-right" id="authLinks">
+					<li><a href="/auth/register.html"><i
+							class="fa fa-user-plus"></i> Regisztráció</a></li>
+					<li><a href="/auth/login.html"><i class="fa fa-sign-in"></i>
+							Bejelentkezés</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /TOP HEADER -->
+
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="/" class="logo"> <img src="./img/logo.png" alt="">
+							</a>
+						</div>
+					</div>
+					<!-- /LOGO -->
+
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form>
+								<select class="input-select">
+									<option value="0">Kategóriák</option>
+									<option value="1">Kategória 01</option>
+									<option value="1">Kategória 02</option>
+								</select> <input class="input" placeholder="Keresés...">
+								<button class="search-btn">Keres</button>
+							</form>
+						</div>
+					</div>
+					<!-- /SEARCH BAR -->
+
+					<!-- ACCOUNT -->
+					<div class="col-md-3 clearfix">
+						<div class="header-ctn">
+							<!-- Wishlist -->
+							<div>
+								<a href="#"> <i class="fa fa-heart-o"></i> <span>Kívánságlista</span>
+									<div class="qty">2</div>
+								</a>
+							</div>
+							<!-- /Wishlist -->
+
+							<!-- Cart -->
+							<div class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown"
+									aria-expanded="true"> <i class="fa fa-shopping-cart"></i> <span>Kosár</span>
+									<div class="qty">0</div>
+								</a>
+								<div class="cart-dropdown">
+									<div class="cart-list">
+										<!-- A termékek dinamikusan kerülnek majd ide -->
+									</div>
+									<div class="cart-summary">
+										<small>Nincs termék a kosárban</small>
+										<h5>Összesen: 0 Ft</h5>
+									</div>
+									<div class="cart-btns">
+										<a href="#">Kosár</a> <a href="#">Fizetés <i
+											class="fa fa-arrow-circle-right"></i></a>
+									</div>
+								</div>
+							</div>
+
+							<!-- /Cart -->
+
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#"> <i class="fa fa-bars"></i> <span>Főoldal</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
+						</div>
+					</div>
+					<!-- /ACCOUNT -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+
+	<!-- NAVIGATION -->
+	<nav id="navigation">
+		<!-- container -->
+		<div class="container">
+			<!-- responsive-nav -->
+			<div id="responsive-nav">
+				<!-- NAV -->
+				<ul class="main-nav nav navbar-nav" id="navLinks">
+					<li class="active"><a href="/">Főoldal</a></li>
+					<li><a href="/store">Termékek</a></li>
+					<li><a href="/about">Rólunk</a></li>
+					<li><a href="/">Kapcsolat</a></li>
+				</ul>
+				<!-- /NAV -->
+			</div>
+			<!-- /responsive-nav -->
+		</div>
+		<!-- /container -->
+	</nav>
+	<!-- /NAVIGATION -->
+
+
+
+	<!-- SECTION -->
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<!-- laptop kategória 1 -->
+				<div class="col-md-4 col-xs-6">
+					<div class="shop">
+						<div class="shop-img">
+							<img src="./img/shop01.png" alt="Irodai laptopok">
+						</div>
+						<div class="shop-body">
+							<h3>
+								Irodai<br>Laptopok
+							</h3>
+							<a href="#" class="cta-btn">Megnézem <i
+								class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- /laptop kategória 1 -->
+
+				<!-- laptop kategória 2 -->
+				<div class="col-md-4 col-xs-6">
+					<div class="shop">
+						<div class="shop-img">
+							<img src="./img/shop02.png" alt="Játékra tervezett laptopok">
+						</div>
+						<div class="shop-body">
+							<h3>
+								Gamer<br>Laptopok
+							</h3>
+							<a href="#" class="cta-btn">Megnézem <i
+								class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- /laptop kategória 2 -->
+
+				<!-- laptop kategória 3 -->
+				<div class="col-md-4 col-xs-6">
+					<div class="shop">
+						<div class="shop-img">
+							<img src="./img/shop03.png" alt="Üzleti laptopok">
+						</div>
+						<div class="shop-body">
+							<h3>
+								Üzleti<br>Laptopok
+							</h3>
+							<a href="#" class="cta-btn">Megnézem <i
+								class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- /laptop kategória 3 -->
+			</div>
+		</div>
+	</div>
+	<!-- /SECTION -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h3 class="title">Új Termékek</h3>
+						<div class="section-nav">
+							<ul class="section-tab-nav tab-nav">
+								<li class="active"><a data-toggle="tab" href="#tab1">Irodai
+										laptopok</a></li>
+								<li><a data-toggle="tab" href="#tab1">Gamer
+										laptopok</a></li>
+								<li><a data-toggle="tab" href="#tab1">Üzleti laptopok</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /section title -->
+
+				<!-- Products tab & slick -->
+				<div class="col-md-12">
+					<div class="row">
+						<div class="products-tabs">
+							<!-- tab -->
+							<div id="tab1" class="tab-pane active">
+								<div class="products-slick" data-nav="#slick-nav-1">
+									<!-- product -->
+									<div class="product">
+										<div class="product-img">
+											<img src="./img/product01.png" alt="">
+											<div class="product-label">
+												<span class="sale">-15%</span> <span class="new">Új</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-category">Üzleti</p>
+											<h3 class="product-name">
+												<a href="#">HP 840 G3</a>
+											</h3>
+											<h4 class="product-price">
+												209.900 Ft
+												<del class="product-old-price">239.900 Ft</del>
+											</h4>
+											<div class="product-rating">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i>
+											</div>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn">
+												<i class="fa fa-shopping-cart"></i> Kosárhoz
+											</button>
+										</div>
+									</div>
+									<!-- /product -->
+
+									<!-- product -->
+									<div class="product">
+										<div class="product-img">
+											<img src="./img/product02.png" alt="">
+											<div class="product-label">
+												<span class="new">Új</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-category">Ultrabook</p>
+											<h3 class="product-name">
+												<a href="#">Macbook Air M1</a>
+											</h3>
+											<h4 class="product-price">
+												359.900 Ft
+												<del class="product-old-price">399.900 Ft</del>
+											</h4>
+											<div class="product-rating">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star-o"></i>
+											</div>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn">
+												<i class="fa fa-shopping-cart"></i> Kosárhoz
+											</button>
+										</div>
+									</div>
+									<!-- /product -->
+
+									<!-- product -->
+									<div class="product">
+										<div class="product-img">
+											<img src="./img/product03.png" alt="">
+											<div class="product-label">
+												<span class="sale">-20%</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-category">Otthoni</p>
+											<h3 class="product-name">
+												<a href="#">Asus VivoBook</a>
+											</h3>
+											<h4 class="product-price">
+												179.900 Ft
+												<del class="product-old-price">199.900Ft</del>
+											</h4>
+											<div class="product-rating">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i>
+											</div>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn">
+												<i class="fa fa-shopping-cart"></i> Kosárhoz
+											</button>
+										</div>
+									</div>
+									<!-- /product -->
+
+									<!-- product -->
+									<div class="product">
+										<div class="product-img">
+											<img src="./img/product04.png" alt="">
+										</div>
+										<div class="product-body">
+											<p class="product-category">Irodai</p>
+											<h3 class="product-name">
+												<a href="#">Dell 7390</a>
+											</h3>
+											<h4 class="product-price">
+												199.900 Ft
+												<del class="product-old-price">229.900 Ft</del>
+											</h4>
+											<div class="product-rating">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i>
+											</div>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn">
+												<i class="fa fa-shopping-cart"></i> Kosárhoz
+											</button>
+										</div>
+									</div>
+									<!-- /product -->
+
+									<!-- product -->
+									<div class="product">
+										<div class="product-img">
+											<img src="./img/product05.png" alt="">
+										</div>
+										<div class="product-body">
+											<p class="product-category">Prémium</p>
+											<h3 class="product-name">
+												<a href="#">ThinkPad T480</a>
+											</h3>
+											<h4 class="product-price">
+												239.900 Ft
+												<del class="product-old-price">269.900 Ft</del>
+											</h4>
+											<div class="product-rating">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i>
+											</div>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn">
+												<i class="fa fa-shopping-cart"></i> Kosárhoz
+											</button>
+										</div>
+									</div>
+									<!-- /product -->
+								</div>
+								<div id="slick-nav-1" class="products-slick-nav"></div>
+							</div>
+							<!-- /tab -->
+						</div>
+					</div>
+				</div>
+				<!-- Products tab & slick -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<!-- AKCIÓS SZEKCIÓ -->
+<div id="hot-deal" class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hot-deal">
+					<ul class="hot-deal-countdown">
+						<li>
+							<div>
+								<h3 id="days">00</h3>
+								<span>Nap</span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h3 id="hours">00</h3>
+								<span>Óra</span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h3 id="minutes">00</h3>
+								<span>Perc</span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h3 id="seconds">00</h3>
+								<span>Mp</span>
+							</div>
+						</li>
+					</ul>
+					<h2 class="text-uppercase">Heti akció</h2>
+					<p>Akár 50% kedvezmény laptopjainkra!</p>
+					<a class="primary-btn cta-btn" href="#">Vásárlás</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /AKCIÓS SZEKCIÓ -->
+
+<!-- Egyszerű visszaszámláló -->
+<script>
+function startCountdown(durationHours) {
+	const countdownTime = durationHours * 60 * 60 * 1000;
+	let endTime = new Date().getTime() + countdownTime;
+
+	function updateTimer() {
+		const now = new Date().getTime();
+		let distance = endTime - now;
+
+		if (distance < 0) {
+			endTime = new Date().getTime() + countdownTime;
+			distance = endTime - now;
+		}
+
+		const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		document.getElementById("days").innerText = days.toString().padStart(2, "0");
+		document.getElementById("hours").innerText = hours.toString().padStart(2, "0");
+		document.getElementById("minutes").innerText = minutes.toString().padStart(2, "0");
+		document.getElementById("seconds").innerText = seconds.toString().padStart(2, "0");
+	}
+
+	setInterval(updateTimer, 1000);
+}
+
+startCountdown(72);
+</script>
+
+<!-- SZEKCIÓ -->
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="top-selling-wrapper">
+					<div class="section-title">
+						<h4 class="title">Legnépszerűbb laptopok</h4>
+						<div class="section-nav">
+							<div id="slick-nav-3" class="products-slick-nav"></div>
+						</div>
+					</div>
+
+					<div class="products-widget-slick" data-nav="#slick-nav-3">
+						<div>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="./img/product07.png" alt="Dell Latitude 7490">
+								</div>
+								<div class="product-body">
+									<p class="product-category">Üzleti laptop</p>
+									<h3 class="product-name"><a href="#">Dell Latitude 7490</a></h3>
+									<h4 class="product-price">199 900 Ft <del class="product-old-price">229 900 Ft</del></h4>
+								</div>
+							</div>
+
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="./img/product08.png" alt="HP EliteBook 840 G3">
+								</div>
+								<div class="product-body">
+									<p class="product-category">Irodai laptop</p>
+									<h3 class="product-name"><a href="#">HP EliteBook 840 G3</a></h3>
+									<h4 class="product-price">209 900 Ft <del class="product-old-price">239 900 Ft</del></h4>
+								</div>
+							</div>
+
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="./img/product09.png" alt="ThinkPad T480">
+								</div>
+								<div class="product-body">
+									<p class="product-category">Prémium laptop</p>
+									<h3 class="product-name"><a href="#">ThinkPad T480</a></h3>
+									<h4 class="product-price">239 900 Ft <del class="product-old-price">269 900 Ft</del></h4>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="./img/product01.png" alt="Asus VivoBook 15">
+								</div>
+								<div class="product-body">
+									<p class="product-category">Otthoni laptop</p>
+									<h3 class="product-name"><a href="#">Asus VivoBook 15</a></h3>
+									<h4 class="product-price">179 900 Ft <del class="product-old-price">199 900 Ft</del></h4>
+								</div>
+							</div>
+
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="./img/product02.png" alt="MacBook Air M1">
+								</div>
+								<div class="product-body">
+									<p class="product-category">Ultrabook</p>
+									<h3 class="product-name"><a href="#">MacBook Air M1</a></h3>
+									<h4 class="product-price">359 900 Ft <del class="product-old-price">399 900 Ft</del></h4>
+								</div>
+							</div>
+
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="./img/product03.png" alt="HP ProBook 450 G5">
+								</div>
+								<div class="product-body">
+									<p class="product-category">Üzleti laptop</p>
+									<h3 class="product-name"><a href="#">HP ProBook 450 G5</a></h3>
+									<h4 class="product-price">219 900 Ft <del class="product-old-price">249 900 Ft</del></h4>
+								</div>
+							</div>
+						</div>
+					</div> <!-- /products-widget-slick -->
+				</div> <!-- /top-selling-wrapper -->
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /SZEKCIÓ -->
+
+
+	<!-- NEWSLETTER -->
+	<div id="newsletter" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="newsletter">
+						<p>
+							Iratkozz fel a <strong>HÍRLEVELÜNKRE</strong>
+						</p>
+						<form>
+							<input class="input" type="email" placeholder="Add meg az e-mail címed">
+							<button class="newsletter-btn">
+								<i class="fa fa-envelope"></i> Feliratkozás
+							</button>
+						</form>
+						<ul class="newsletter-follow">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /NEWSLETTER -->
+
+	<!-- FOOTER -->
+	<footer id="footer">
+		<!-- top footer -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Rólunk</h3>
+							<p>A ReNew Kft. felújított, minőségi laptopokkal foglalkozik, garanciával és kedvező árakkal.</p>
+							<ul class="footer-links">
+								<li><a href="#"><i class="fa fa-map-marker"></i>6000
+										Kecskemét, Fő utca 21.</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i>+36 20 123 4567</a></li>
+								<li><a href="#"><i class="fa fa-envelope-o"></i>info@renew.hu</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Kategóriák</h3>
+							<ul class="footer-links">
+								<li><a href="#">Akciós termékek</a></li>
+								<li><a href="#">Irodai laptopok</a></li>
+								<li><a href="#">Üzleti laptopok</a></li>
+								<li><a href="#">Gamer laptopok</a></li>
+								<li><a href="#">Prémium modellek</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="clearfix visible-xs"></div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Információ</h3>
+							<ul class="footer-links">
+								<li><a href="#">Rólunk</a></li>
+								<li><a href="#">Kapcsolat</a></li>
+								<li><a href="#">Adatvédelmi irányelvek</a></li>
+								<li><a href="#">Szállítás és visszaküldés</a></li>
+								<li><a href="#">Felhasználási feltételek</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Szolgáltatások</h3>
+							<ul class="footer-links">
+								<li><a href="#">Fiókom</a></li>
+								<li><a href="#">Kosár</a></li>
+								<li><a href="#">Kívánságlista</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /top footer -->
+
+		<!-- bottom footer -->
+		<div id="bottom-footer" class="section">
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<ul class="footer-payments">
+							<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+							<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+						</ul>
+						<span class="copyright"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+							ReNew Kft. – Minden jog fenntartva. <i
+							class="fa fa-heart-o" aria-hidden="true"></i> Készítette <a
+							href="https://colorlib.com" target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</span>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /bottom footer -->
+	</footer>
+	<!-- /FOOTER -->
+
+	<!-- jQuery Plugins -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/nouislider.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/main.js"></script>
+
+	<script>
+  function renderAuthLinks() {
+    const authContainer = document.getElementById('authLinks');
+    const userData = localStorage.getItem('user');
+    authContainer.innerHTML = '';
+
+    if (!userData) {
+      // Nem bejelentkezett felhasználó
+      authContainer.innerHTML = `
+        <li><a href="/auth/register.html"><i class="fa fa-user-plus"></i> Regisztráció</a></li>
+        <li><a href="/auth/login.html"><i class="fa fa-sign-in"></i> Bejelentkezés</a></li>
+      `;
+    } else {
+      const user = JSON.parse(userData);
+      let html = '';
+
+      // Minden bejelentkezett felhasználónak van "Üzenetek"
+      html += `<li><a href="#"><i class="fa fa-envelope"></i> Üzenetek</a></li>`;
+
+      // Ha admin, hozzáadjuk az Admin menüt is
+      if (user.role === 'ADMIN') {
+        html += `<li><a href="#"><i class="fa fa-cog"></i> Admin</a></li>`;
+      }
+
+      // Bejelentkezett user email + Logout
+      html += `
+        <li><a href="#"><i class="fa fa-user-o"></i> ${user.email}</a></li>
+        <li><a href="#" onclick="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+      `;
+
+      authContainer.innerHTML = html;
+    }
+  }
+
+  async function logout() {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (err) {
+      console.warn('Logout API hiba:', err);
+    } finally {
+      localStorage.removeItem('user');
+      window.location.reload();
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', renderAuthLinks);
+</script>
+
+
+</body>
+</html>
