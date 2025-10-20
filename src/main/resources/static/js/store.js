@@ -1,7 +1,57 @@
 (function () {
   const productList = document.getElementById("product-list");
+  const cartBadge = document.querySelector(".header-ctn .fa-shopping-cart + span + .qty");
+  const cartList = document.querySelector(".cart-list");
+  const cartSummary = document.querySelector(".cart-summary");
 
-  // === 1) Termék kártya ===
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  let allProducts = []; // <<< EZ HIÁNYZOTT
+
+  // === 🛒 Kosár frissítése ===
+  function updateCart() {
+    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    if (cartBadge) cartBadge.textContent = totalQty;
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    if (cart.length === 0) {
+      cartList.innerHTML = `<p class="text-center text-muted">Nincs termék a kosárban</p>`;
+      cartSummary.innerHTML = `<small>Összesen: 0 Ft</small>`;
+      return;
+    }
+
+    let total = 0;
+    cartList.innerHTML = cart
+      .map(item => {
+        const laptop = allProducts.find(p => p.id === item.id);
+        if (!laptop) return "";
+        const price = laptop.ar * item.qty;
+        total += price;
+
+        return `
+          <div class="product-widget">
+            <div class="product-img">
+              <img src="/img/${laptop.id}.png" alt="${laptop.tipus}" onerror="this.src='/img/logo.png'">
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">${laptop.gyarto} ${laptop.tipus}</h3>
+              <h4 class="product-price"><span class="qty">${item.qty}x</span> ${price.toLocaleString("hu-HU")} Ft</h4>
+            </div>
+            <button class="delete" onclick="removeFromCart(${laptop.id})"><i class="fa fa-close"></i></button>
+          </div>
+        `;
+      })
+      .join("");
+
+    cartSummary.innerHTML = `
+      <small>${cart.length} termék a kosárban</small>
+      <h5>Összesen: ${total.toLocaleString("hu-HU")} Ft</h5>
+      <button onclick="clearCart()" class="btn btn-sm btn-outline-danger w-100 mt-2">
+        <i class="fa fa-trash"></i> Kosár ürítése
+      </button>
+    `;
+  }
+
+  // === 💳 Termék kártya ===
   function card(l) {
     const ar = (l.ar ?? 0).toLocaleString("hu-HU");
     const os = l.operatingSystemName || "—";
@@ -10,9 +60,7 @@
       <div class="col-md-4 col-xs-6">
         <div class="product" style="cursor:pointer;" onclick="showProductDetails(${l.id})">
           <div class="product-img">
-            <img src="/img/${l.id}.png" alt="${l.tipus}"
-                 onerror="this.src='/img/logo.png'">
-            <div class="product-label"><span class="new">NEW</span></div>
+            <img src="/img/${l.id}.png" alt="${l.tipus}" onerror="this.src='/img/logo.png'">
           </div>
           <div class="product-body">
             <p class="product-category">${os}</p>
@@ -23,15 +71,9 @@
               <i class="fa fa-star"></i><i class="fa fa-star"></i>
               <i class="fa fa-star-o"></i>
             </div>
-            <div class="product-btns">
-              <button class="add-to-wishlist">
-                <i class="fa fa-heart-o"></i>
-                <span class="tooltipp">Kívánságlistára</span>
-              </button>
-            </div>
           </div>
           <div class="add-to-cart">
-            <button class="add-to-cart-btn">
+            <button class="add-to-cart-btn" onclick="addToCart(${l.id}, event)">
               <i class="fa fa-shopping-cart"></i> Kosárba
             </button>
           </div>
@@ -39,14 +81,16 @@
       </div>`;
   }
 
-  // === 2) Termékek betöltése ===
+  // === 📦 Terméklista betöltése ===
   async function load() {
     try {
       const res = await fetch("/api/laptops?page=0&size=12");
       if (!res.ok) throw new Error(`Szerver hiba: ${res.status}`);
       const data = await res.json();
-
       const list = data?.content ?? [];
+
+      allProducts = list; // <<< IDE TÖLTJÜK BE A TERMÉKEKET
+
       if (!Array.isArray(list) || list.length === 0) {
         productList.innerHTML = `
           <div class="col-md-12 text-center" style="padding: 50px 0;">
@@ -57,6 +101,7 @@
       }
 
       productList.innerHTML = list.map(card).join("");
+      updateCart(); // <<< itt is frissítjük, ha újraindul az oldal
     } catch (err) {
       console.error(err);
       productList.innerHTML = `
@@ -67,33 +112,41 @@
     }
   }
 
-  // === 3) Termék részletei (Bootstrap modal) ===
-  window.showProductDetails = function (id) {
-    fetch(`/api/laptops/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Nem sikerült betölteni a részleteket");
-        return res.json();
-      })
-      .then((l) => {
-        document.getElementById("modalTitle").textContent = `${l.gyarto} ${l.tipus}`;
-        document.getElementById("modalCpu").textContent = l.processorName || "–";
-        document.getElementById("modalOs").textContent = l.operatingSystemName || "–";
-        document.getElementById("modalDisplay").textContent = l.kijelzo || "–";
-        document.getElementById("modalRam").textContent = l.memoria || "–";
-        document.getElementById("modalStorage").textContent = l.merevlemez || "–";
-        document.getElementById("modalGpu").textContent = l.videoezelo || "–";
-        document.getElementById("modalStock").textContent = l.db || "–";
-        document.getElementById("modalPrice").textContent = `${(l.ar ?? 0).toLocaleString("hu-HU")} Ft`;
-        document.getElementById("modalImage").src = `/img/${l.id}.png`;
+  // === 🧺 Kosár műveletek ===
+  window.addToCart = function (id, e) {
+    if (e) e.stopPropagation();
+    const idx = cart.findIndex(item => item.id === id);
+    if (idx === -1) {
+      cart.push({ id, qty: 1 });
+    } else {
+      cart[idx].qty++;
+    }
+    updateCart();
 
-        $("#productModal").modal("show");
-      })
-      .catch((err) => {
-        alert("Hiba: " + err.message);
-        console.error(err);
-      });
+    const btn = e?.target?.closest("button");
+    if (btn) {
+      btn.disabled = true;
+      const oldText = btn.innerHTML;
+      btn.innerHTML = "✅ Hozzáadva!";
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = oldText;
+      }, 1500);
+    }
   };
 
-  document.addEventListener("DOMContentLoaded", load);
-})();
+  window.removeFromCart = function (id) {
+    cart = cart.filter(item => item.id !== id);
+    updateCart();
+  };
 
+  window.clearCart = function () {
+    cart = [];
+    updateCart();
+  };
+
+  // === 🔄 Inicializálás ===
+  document.addEventListener("DOMContentLoaded", () => {
+    load();
+  });
+})();

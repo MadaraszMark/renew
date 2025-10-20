@@ -6,18 +6,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<title>Termékek - ReNew</title>
+<title>Kapcsolat - ReNew</title>
 
 <!-- Google font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
 	rel="stylesheet">
 
+<!-- Bootstrap -->
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+<!-- Slick -->
 <link type="text/css" rel="stylesheet" href="css/slick.css" />
 <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+
+<!-- nouislider -->
 <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+
+<!-- Font Awesome Icon -->
 <link rel="stylesheet" href="css/font-awesome.min.css">
+
+<!-- Custom stlylesheet -->
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -143,9 +152,9 @@
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav" id="navLinks">
 					<li><a href="/">Főoldal</a></li>
-					<li class="active"><a href="/store">Termékek</a></li>
+					<li><a href="/store">Termékek</a></li>
 					<li><a href="/about">Rólunk</a></li>
-					<li><a href="/contact">Kapcsolat</a></li>
+					<li class="active"><a href="/contact">Kapcsolat</a></li>
 				</ul>
 				<!-- /NAV -->
 			</div>
@@ -155,215 +164,57 @@
 	</nav>
 	<!-- /NAVIGATION -->
 
-	<!-- SECTION -->
+	<!-- KAPCSOLAT -->
 	<div class="section">
-		<!-- container -->
 		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<!-- ASIDE -->
-				<div id="aside" class="col-md-3">
-					<!-- aside Widget -->
-					<div class="aside">
-						<h3 class="aside-title">Kategóriák</h3>
-						<div class="checkbox-filter">
+			<div class="row text-center">
+				<div class="col-md-8 col-md-offset-2">
+					<h2 class="text-uppercase">Lépj kapcsolatba velünk</h2>
+					<p class="text-muted" style="margin-bottom: 30px;">Kérdésed van
+						termékeinkkel kapcsolatban? Írj nekünk bátran az alábbi űrlapon
+						keresztül!</p>
 
-							<div class="input-checkbox">
-								<input type="checkbox" id="category-1"> <label
-									for="category-1"> <span></span> Irodai laptopok
-								</label>
-							</div>
-
-							<div class="input-checkbox">
-								<input type="checkbox" id="category-2"> <label
-									for="category-2"> <span></span> Üzleti laptopok
-								</label>
-							</div>
-
-							<div class="input-checkbox">
-								<input type="checkbox" id="category-3"> <label
-									for="category-3"> <span></span> Gamer laptopok
-								</label>
-							</div>
-
-							<div class="input-checkbox">
-								<input type="checkbox" id="category-4"> <label
-									for="category-4"> <span></span> Prémium laptopok
-								</label>
-							</div>
-
-							<div class="input-checkbox">
-								<input type="checkbox" id="category-5"> <label
-									for="category-5"> <span></span> Ultrabookok
-								</label>
-							</div>
-
-							<div class="input-checkbox">
-								<input type="checkbox" id="category-6"> <label
-									for="category-6"> <span></span> Smartphones <small>(740)</small>
-								</label>
-							</div>
-						</div>
-					</div>
-					<!-- /aside Widget -->
-
-					<!-- Ár szűrő Widget -->
-					<div class="aside">
-						<h3 class="aside-title">Ár (Ft)</h3>
-						<div class="price-filter">
-							<div id="price-slider"></div>
-
-							<div class="input-number price-min">
-								<input id="price-min" type="number" value="10000" min="10000"
-									max="999000" step="1000"> <span class="qty-up">+</span>
-								<span class="qty-down">-</span>
-							</div>
-
-							<span>-</span>
-
-							<div class="input-number price-max">
-								<input id="price-max" type="number" value="999000" min="10000"
-									max="999000" step="1000"> <span class="qty-up">+</span>
-								<span class="qty-down">-</span>
-							</div>
-						</div>
-						<small>Az árak forintban (Ft) értendők.</small>
-					</div>
-					<!-- /Ár szűrő Widget -->
-
-
-					<!-- aside Widget -->
-					<div class="aside">
-						<h3 class="aside-title">Márkáink</h3>
-						<div class="checkbox-filter">
-							<div class="input-checkbox">
-								<input type="checkbox" id="brand-1"> <label
-									for="brand-1"> <span></span> HP
-								</label>
-							</div>
-							<div class="input-checkbox">
-								<input type="checkbox" id="brand-2"> <label
-									for="brand-2"> <span></span> Dell
-								</label>
-							</div>
-							<div class="input-checkbox">
-								<input type="checkbox" id="brand-3"> <label
-									for="brand-3"> <span></span> Lenovo
-								</label>
-							</div>
-							<div class="input-checkbox">
-								<input type="checkbox" id="brand-4"> <label
-									for="brand-4"> <span></span> Asus
-								</label>
-							</div>
-							<div class="input-checkbox">
-								<input type="checkbox" id="brand-5"> <label
-									for="brand-5"> <span></span> Acer
-								</label>
-							</div>
-							<div class="input-checkbox">
-								<input type="checkbox" id="brand-6"> <label
-									for="brand-6"> <span></span> Apple
-								</label>
-							</div>
-						</div>
-					</div>
-					<!-- /aside Widget -->
-
-					<!-- aside Widget -->
-					<div class="aside">
-						<h3 class="aside-title">Legnépszerűbb laptopok</h3>
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product01.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Üzleti laptop</p>
-								<h3 class="product-name">
-									<a href="#">HP EliteBook 845 G7</a>
-								</h3>
-								<h4 class="product-price">250.000 Ft</h4>
-							</div>
+					<form id="contactForm" class="text-left">
+						<div class="form-group">
+							<label for="name">Név</label> <input type="text" id="name"
+								name="name" class="form-control" placeholder="Add meg a neved"
+								required>
 						</div>
 
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product02.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Ultrabook</p>
-								<h3 class="product-name">
-									<a href="#">MacBook Air M1</a>
-								</h3>
-								<h4 class="product-price">360.000 Ft</h4>
-							</div>
+						<div class="form-group">
+							<label for="email">E-mail cím</label> <input type="email"
+								id="email" name="email" class="form-control"
+								placeholder="Add meg az e-mail címed" required>
 						</div>
 
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product03.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Irodai laptop</p>
-								<h3 class="product-name">
-									<a href="#">Asus VivoBook 15</a>
-								</h3>
-								<h4 class="product-price">230.000 Ft</h4>
-							</div>
+						<div class="form-group">
+							<label for="subject">Tárgy</label> <input type="text"
+								id="subject" name="subject" class="form-control"
+								placeholder="Pl.: Érdeklődés egy termékről" required>
 						</div>
-					</div>
-					<!-- /aside Widget -->
+
+						<div class="form-group">
+							<label for="message">Üzenet</label>
+							<textarea id="message" name="message" rows="5"
+								class="form-control" placeholder="Írd ide az üzeneted..."
+								required></textarea>
+						</div>
+
+						<div class="text-center" style="margin-top: 20px;">
+							<button type="submit" class="btn btn-danger btn-lg shadow-sm">
+								<i class="fa fa-paper-plane"></i> Üzenet küldése
+							</button>
+						</div>
+					</form>
+
+					<!-- Üzenet visszajelzés -->
+					<div id="responseMessage" class="text-center"
+						style="margin-top: 25px;"></div>
 				</div>
-				<!-- /ASIDE -->
-
-				<!-- STORE -->
-				<div id="store" class="col-md-9">
-					<!-- store top filter -->
-					<div class="store-filter clearfix">
-						<div class="store-sort">
-							<label> Rendezés: <select class="input-select">
-									<option value="0">Népszerűség szerint</option>
-									<option value="1">Ár szerint növekvő</option>
-									<option value="2">Ár szerint csökkenő</option>
-							</select>
-							</label> <label> Megjelenítés: <select class="input-select">
-									<option value="0">5 termék</option>
-									<option value="1">10 termék</option>
-									<option value="2">15 termék</option>
-							</select>
-							</label>
-						</div>
-						<ul class="store-grid">
-							<li class="active"><i class="fa fa-th"></i></li>
-							<li><a href="#"><i class="fa fa-th-list"></i></a></li>
-						</ul>
-					</div>
-					<!-- /store top filter -->
-
-					<!-- TERMÉKLISTA -->
-					<div class="row" id="product-list">
-						<div class="col-md-12 text-center" style="padding: 50px 0;">
-							<h4>Jelenleg nincs megjeleníthető termék.</h4>
-							<p>A termékek feltöltés alatt állnak. Kérjük, nézz vissza
-								később!</p>
-						</div>
-					</div>
-					<!-- /TERMÉKLISTA -->
-
-
-					<!-- store bottom filter -->
-					<div class="store-filter clearfix">
-						<span class="store-qty">5-15 termék megjelenítve</span>
-					</div>
-					<!-- /store bottom filter -->
-				</div>
-				<!-- /STORE -->
 			</div>
-			<!-- /row -->
 		</div>
-		<!-- /container -->
 	</div>
-	<!-- /SECTION -->
+	<!-- /KAPCSOLAT -->
 
 	<!-- NEWSLETTER -->
 	<div id="newsletter" class="section">
@@ -483,7 +334,8 @@
 						<span class="copyright"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							Copyright &copy;<script>
 								document.write(new Date().getFullYear());
-							</script> ReNew Kft. – Minden jog fenntartva. <i class="fa fa-heart-o"
+							</script>
+							ReNew Kft. – Minden jog fenntartva. <i class="fa fa-heart-o"
 							aria-hidden="true"></i> Készítette <a href="https://colorlib.com"
 							target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</span>
@@ -504,65 +356,6 @@
 	<script src="js/nouislider.min.js"></script>
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="/js/store.js"></script>
-
-	<!-- Termék részletei Modal -->
-	<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header bg-dark text-white">
-					<h5 class="modal-title" id="modalTitle"></h5>
-					<button type="button" class="close text-white" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-
-				<div class="modal-body">
-					<div class="row align-items-center">
-
-						<!-- KÉP -->
-						<div class="col-md-6 text-center">
-							<img id="modalImage" src="/img/logo.png" alt="Laptop"
-								class="img-fluid rounded shadow-sm border"
-								style="max-height: 320px; object-fit: contain;">
-						</div>
-
-						<!-- ADATOK -->
-						<div class="col-md-6">
-							<ul class="list-group mb-3 shadow-sm">
-								<li class="list-group-item"><strong>💻 Processzor:</strong>
-									<span id="modalCpu"></span></li>
-								<li class="list-group-item"><strong>🪟 Operációs
-										rendszer:</strong> <span id="modalOs"></span></li>
-								<li class="list-group-item"><strong>📺 Kijelző:</strong> <span
-									id="modalDisplay"></span>”</li>
-								<li class="list-group-item"><strong>🧠 Memória:</strong> <span
-									id="modalRam"></span> MB</li>
-								<li class="list-group-item"><strong>💾 Merevlemez:</strong>
-									<span id="modalStorage"></span> GB</li>
-								<li class="list-group-item"><strong>🎮
-										Videóvezérlő:</strong> <span id="modalGpu"></span></li>
-								<li class="list-group-item"><strong>📦 Készlet:</strong> <span
-									id="modalStock"></span> db</li>
-							</ul>
-
-							<div
-								class="d-flex justify-content-between align-items-center mt-3">
-								<h4 class="text-danger fw-bold mb-0" id="modalPrice">– Ft</h4>
-
-								<button id="modalAddToCart"
-									class="btn btn-danger btn-lg px-4 shadow-sm"
-									style="border-radius: 10px; transition: 0.2s all;">
-									<i class="fa fa-shopping-cart me-2"></i> Kosárba
-								</button>
-							</div>
-
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<script src="js/contact.js"></script>
 </body>
 </html>

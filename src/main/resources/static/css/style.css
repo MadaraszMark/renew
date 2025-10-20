@@ -116,6 +116,46 @@ ul, ol {
   color: #FFF;
 }
 
+.modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modal-header {
+  border-bottom: 2px solid #dc3545;
+}
+
+.list-group-item {
+  font-size: 15px;
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+#modalAddToCart {
+  transition: all 0.2s ease-in-out;
+}
+
+#modalAddToCart:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+#modalPrice {
+  font-weight: 600;
+  font-size: 1.5em;
+}
+
+#modalAddToCart:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
 /*----------------------------*\
 	Inputs
 \*----------------------------*/

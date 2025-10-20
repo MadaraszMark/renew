@@ -21,9 +21,9 @@ public class PageController {
         return "product";
     }
 
-    @GetMapping("/checkout")
+    @GetMapping("/contact")
     public String checkout() {
-        return "checkout";
+        return "contact";
     }
 
     @GetMapping("/about")
