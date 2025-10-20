@@ -363,13 +363,6 @@
 					<!-- store bottom filter -->
 					<div class="store-filter clearfix">
 						<span class="store-qty">5-15 termék megjelenítve</span>
-						<ul class="store-pagination">
-							<li class="active">1</li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-						</ul>
 					</div>
 					<!-- /store bottom filter -->
 				</div>
@@ -508,78 +501,6 @@
 		<!-- /bottom footer -->
 	</footer>
 	<!-- /FOOTER -->
-	
-	<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const productList = document.getElementById("product-list");
-
-    fetch("/api/laptops")
-        .then(res => {
-            if (!res.ok) throw new Error("Hiba a szerverrel!");
-            return res.json();
-        })
-        .then(data => {
-            if (!data || !data.content || data.content.length === 0) {
-                productList.innerHTML = `
-                    <div class="col-md-12 text-center" style="padding: 50px 0;">
-                        <h4>Jelenleg nincs megjeleníthető termék.</h4>
-                        <p>A termékek feltöltés alatt állnak. Kérjük, nézz vissza később!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            // 🔄 generáljuk a termékkártyákat
-            productList.innerHTML = data.content.map(laptop => `
-                <div class="col-md-4 col-xs-6">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="img/product-placeholder.png" alt="${laptop.tipus}">
-                            <div class="product-label">
-                                <span class="new">NEW</span>
-                            </div>
-                        </div>
-                        <div class="product-body">
-                            <p class="product-category">${laptop.operatingSystemName || '—'}</p>
-                            <h3 class="product-name"><a href="#">${laptop.gyarto} ${laptop.tipus}</a></h3>
-                            <h4 class="product-price">${laptop.ar ? laptop.ar.toLocaleString()} Ft</h4>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="product-btns">
-                                <button class="add-to-wishlist">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span class="tooltipp">Kívánságlistára</span>
-                                </button>
-                                <button class="quick-view">
-                                    <i class="fa fa-eye"></i>
-                                    <span class="tooltipp">Részletek</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="add-to-cart">
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Kosárba</button>
-                        </div>
-                    </div>
-                </div>
-            `).join("");
-        })
-        .catch(err => {
-            console.error(err);
-            productList.innerHTML = `
-                <div class="col-md-12 text-center" style="padding: 50px 0;">
-                    <h4>Hiba történt a termékek betöltésekor!</h4>
-                    <p>${err.message}</p>
-                </div>
-            `;
-        });
-});
-</script>
-	
 
 	<!-- jQuery Plugins -->
 	<script src="js/jquery.min.js"></script>
@@ -588,6 +509,40 @@ document.addEventListener("DOMContentLoaded", function() {
 	<script src="js/nouislider.min.js"></script>
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="/js/store.js"></script>
+	
+	<!-- Termék részletei Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="productModalLabel">Termék részletei</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Bezárás">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-5">
+            <img id="modalImage" src="" alt="" class="img-responsive" style="max-width:100%; border-radius:8px;">
+          </div>
+          <div class="col-md-7">
+            <h3 id="modalTitle"></h3>
+            <p><strong>Processzor:</strong> <span id="modalCpu"></span></p>
+            <p><strong>Operációs rendszer:</strong> <span id="modalOs"></span></p>
+            <p><strong>Kijelző:</strong> <span id="modalDisplay"></span> hüvelyk</p>
+            <p><strong>Memória:</strong> <span id="modalRam"></span> MB</p>
+            <p><strong>Merevlemez:</strong> <span id="modalStorage"></span> GB</p>
+            <p><strong>Videóvezérlő:</strong> <span id="modalGpu"></span></p>
+            <p><strong>Raktáron:</strong> <span id="modalStock"></span> db</p>
+            <h4 id="modalPrice" style="color:#d10024; font-weight:700;"></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+	
 
 </body>
 </html>
