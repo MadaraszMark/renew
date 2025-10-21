@@ -27,7 +27,7 @@ public class Laptop {
     
     private Integer merevlemez;
 
-    @Column(length = 100)
+    @Column(length = 100, name = "videoezelo", nullable = false )
     private String videoVezerlo;
 
     private Integer ar;

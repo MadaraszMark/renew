@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,61 +17,58 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @RequiredArgsConstructor
+@EnableMethodSecurity
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthFilter;
+	private final JwtAuthenticationFilter jwtAuthFilter;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            // JWT miatt nincs session és CSRF
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-            .authorizeHttpRequests(auth -> auth
+		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
+				.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                // 🔓 Nyilvános frontend fájlok
-                .requestMatchers(
-                        "/", "/index.html",
-                        "/css/**", "/js/**", "/img/**", "/fonts/**", "/favicon.ico",
-                        "/store/**", "/contact/**", "/auth/**", "/messages/**", "/about/**"
-                ).permitAll()
+				.authorizeHttpRequests(auth -> auth
 
-                // 🔓 Auth végpontok
-                .requestMatchers("/auth/register", "/auth/login").permitAll()
+						// 🔓 Nyilvános frontend fájlok (HTML, JS, CSS stb.)
+						.requestMatchers("/", "/index.html", "/css/**", "/js/**", "/img/**", "/fonts/**",
+								"/favicon.ico", "/store/**", "/contact/**", "/auth/**", "/messages/**", "/chart/**",
+								"/about/**")
+						.permitAll()
 
-                // 🔓 Nyilvános API-k (termékek, OS, processzor)
-                .requestMatchers(HttpMethod.GET,
-                        "/api/processor/**",
-                        "/api/os/**",
-                        "/api/laptops/**"
-                ).permitAll()
+						// 🔓 Auth végpontok
+						.requestMatchers("/auth/register", "/auth/login").permitAll()
 
-                // 🔓 Üzenet küldése engedélyezett
-                .requestMatchers(HttpMethod.POST, "/api/contact").permitAll()
+						// 🔓 Publikus API-k (processzorok, OS, laptopok, diagram)
+						.requestMatchers("/api/processors/**", "/api/os/**", "/api/laptops/**", "/api/chart/**").permitAll()
 
-                // 🔒 Üzenetek lekérése (csak bejelentkezett felhasználónak)
-                .requestMatchers(HttpMethod.GET, "/api/contact").authenticated()
+						// 🔓 Üzenetküldés engedélyezett
+						.requestMatchers(HttpMethod.POST, "/api/contact").permitAll()
 
-                // 🔒 Minden más védett
-                .anyRequest().authenticated()
-            )
+						// 🔒 Üzenetek lekérése (bejelentkezett)
+						.requestMatchers(HttpMethod.GET, "/api/contact").authenticated()
 
-            // JWT filter beszúrása
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+						// 🟢 az admin oldal statikusan betölthető
+						.requestMatchers("/admin", "/admin/**", "/admin.html").permitAll()
 
-        return http.build();
-    }
+						// 🔒 az admin API továbbra is csak ROLE_ADMIN
+						.requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+						// 🔒 Minden más védett
+						.anyRequest().authenticated())
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration cfg) throws Exception {
-        return cfg.getAuthenticationManager();
-    }
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+		return http.build();
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration cfg) throws Exception {
+		return cfg.getAuthenticationManager();
+	}
 }
-

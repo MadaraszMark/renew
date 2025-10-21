@@ -80,6 +80,34 @@ a:hover, a:focus {
   outline: none;
 }
 
+#laptopCrudSection {
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+#laptopCrudSection table th,
+#laptopCrudSection table td {
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+#laptopCrudSection input,
+#laptopCrudSection select {
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+#laptopCrudSection button {
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+
 ul, ol {
   margin: 0;
   padding: 0;

@@ -30,5 +30,16 @@ public class PageController {
     public String blank() {
         return "about";
     }
+    
+    @GetMapping("/chart")
+    public String chart() {
+        return "chart";
+    }
+    
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin";
+    }
+    
 }
 

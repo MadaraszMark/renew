@@ -10,32 +10,59 @@ import org.springframework.stereotype.Component;
 @Component
 public class LaptopMapper {
 
-    //Entity → DTO
-    public LaptopResponse toResponse(Laptop entity) {
-        if (entity == null) return null;
+	// Entity → DTO
+	public LaptopResponse toResponse(Laptop entity) {
+	    if (entity == null) return null;
 
-        return LaptopResponse.builder()
-                .id(entity.getId())
-                .gyarto(entity.getGyarto())
-                .tipus(entity.getTipus())
-                .kijelzo(entity.getKijelzo())
-                .memoria(entity.getMemoria())
-                .merevlemez(entity.getMerevlemez())
-                .videoVezerlo(entity.getVideoVezerlo())
-                .ar(entity.getAr())
-                .db(entity.getDb())
-                .processorName(
-                        entity.getProcessor() != null
-                                ? entity.getProcessor().getGyarto() + " " + entity.getProcessor().getTipus()
-                                : null
-                )
-                .operatingSystemName(
-                        entity.getOperatingSystem() != null
-                                ? entity.getOperatingSystem().getNev()
-                                : null
-                )
-                .build();
+	    return LaptopResponse.builder()
+	            .id(entity.getId())
+	            .gyarto(entity.getGyarto())
+	            .tipus(entity.getTipus())
+	            .kijelzo(entity.getKijelzo())
+	            .memoria(entity.getMemoria())
+	            .merevlemez(entity.getMerevlemez())
+	            .videoVezerlo(entity.getVideoVezerlo())
+	            .ar(entity.getAr())
+	            .db(entity.getDb())
+	            .processorName(
+	                    entity.getProcessor() != null
+	                            ? entity.getProcessor().getGyarto() + " " + entity.getProcessor().getTipus()
+	                            : null
+	            )
+	            .operatingSystemName(
+	                    entity.getOperatingSystem() != null
+	                            ? entity.getOperatingSystem().getNev()
+	                            : null
+	            )
+
+	            // 🆕 Ezeket addtuk hozzá:
+	            .processorId(
+	                    entity.getProcessor() != null
+	                            ? entity.getProcessor().getId()
+	                            : null
+	            )
+	            .operatingSystemId(
+	                    entity.getOperatingSystem() != null
+	                            ? entity.getOperatingSystem().getId()
+	                            : null
+	            )
+
+	            .build();
+	}
+    
+    public void updateEntity(Laptop entity, LaptopRequest dto, Processor proc, OperatingSystem os) {
+        entity.setGyarto(dto.getGyarto());
+        entity.setTipus(dto.getTipus());
+        entity.setKijelzo(dto.getKijelzo());
+        entity.setMemoria(dto.getMemoria());
+        entity.setMerevlemez(dto.getMerevlemez());
+        entity.setVideoVezerlo(dto.getVideoVezerlo());
+        entity.setAr(dto.getAr());
+        entity.setDb(dto.getDb());
+        entity.setProcessor(proc);
+        entity.setOperatingSystem(os);
     }
+
 
     //DTO → Entity
     public Laptop toEntity(LaptopRequest dto, Processor proc, OperatingSystem os) {

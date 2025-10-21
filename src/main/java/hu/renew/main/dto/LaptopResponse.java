@@ -20,5 +20,7 @@ public class LaptopResponse {
 
     private String processorName;
     private String operatingSystemName;
+    private Integer processorId;
+    private Integer operatingSystemId;
 }
 

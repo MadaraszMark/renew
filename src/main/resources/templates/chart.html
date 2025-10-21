@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<title>Rólunk - ReNew</title>
+<title>Diagram - ReNew</title>
 
 <!-- Google font -->
 <link
@@ -153,9 +153,9 @@
 				<ul class="main-nav nav navbar-nav" id="navLinks">
 					<li><a href="/">Főoldal</a></li>
 					<li><a href="/store">Termékek</a></li>
-					<li class="active"><a href="/about">Rólunk</a></li>
+					<li><a href="/about">Rólunk</a></li>
 					<li><a href="/contact">Kapcsolat</a></li>
-					<li><a href="/chart">Diagram</a></li>
+					<li class="active"><a href="/chart">Diagram</a></li>
 				</ul>
 				<!-- /NAV -->
 			</div>
@@ -165,46 +165,33 @@
 	</nav>
 	<!-- /NAVIGATION -->
 
-	<!-- ABOUT SECTION -->
-	<div class="section">
-		<div class="container">
-			<div class="row text-center">
-				<div class="col-md-10 col-md-offset-1">
-					<h2 class="text-uppercase">Üdvözöl a <span style="color: #d10024;">ReNew</span>!</h2>
-					<p style="margin-top: 20px; font-size: 16px; line-height: 1.8;">
-						A ReNew Kft. 2020-ban jött létre azzal a céllal, hogy megbízható, minőségi
-						<b>felújított laptopokat</b> kínáljon elérhető áron mind magánszemélyek, mind vállalkozások számára.
-						<br><br>
-						Minden eszközünket szakértő technikusaink vizsgálják be, tisztítják és újratelepítik, így garantáljuk,
-						hogy a vásárlóink <b>újszerű állapotban</b> kapják meg a terméket.
-						<br><br>
-						Célunk, hogy a technológia mindenki számára elérhető legyen, miközben a környezetet is óvjuk az
-						elektronikai hulladék csökkentésével.
-					</p>
+	<!-- DIAGRAM -->
+<div class="section">
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-md-10 col-md-offset-1">
+				<h2 class="text-uppercase">
+					Laptop <span style="color: #d10024;">Diagram</span>
+				</h2>
+				<p class="text-muted" style="margin-bottom: 30px;">
+					Itt láthatod, hány laptop található az adatbázisban gyártónként
+				</p>
 
-					<hr style="margin: 40px 0;">
-
-					<h3>Miért válassz minket?</h3>
-					<ul style="list-style: none; padding: 0; font-size: 15px; line-height: 1.9;">
-						<li>✔️ Minden laptop <b>12 hónap garanciával</b> érkezik</li>
-						<li>✔️ <b>Gyors szállítás</b> – akár 2 munkanapon belül</li>
-						<li>✔️ <b>Ingyenes visszaküldés</b> 14 napon belül</li>
-						<li>✔️ <b>Fenntartható</b> megoldás – újrahasznosított technológia</li>
-					</ul>
-
-					<hr style="margin: 40px 0;">
-
-					<h3>Kapcsolat</h3>
-					<p style="margin-top: 10px;">
-						📍 6000 Kecskemét, Fő utca 21.<br>
-						📞 +36 70 234 9876<br>
-						📧 <a href="mailto:info@renew.hu">info@renew.hu</a>
-					</p>
+				<!-- DIAGRAM TARTALOM -->
+				<div class="chart-container" style="position: relative; margin: auto; height: 60vh; width: 80%;">
+					<canvas id="laptopChart"></canvas>
 				</div>
+
+				<!-- Hiba / visszajelzés -->
+				<div id="chartError" class="text-center" style="margin-top: 20px;"></div>
 			</div>
 		</div>
 	</div>
-	<!-- /ABOUT SECTION -->
+</div>
+<!-- /DIAGRAM -->
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	<!-- NEWSLETTER -->
 	<div id="newsletter" class="section">
@@ -218,7 +205,8 @@
 							Iratkozz fel a <strong>HÍRLEVELÜNKRE</strong>
 						</p>
 						<form>
-							<input class="input" type="email" placeholder="Add meg az e-mail címed">
+							<input class="input" type="email"
+								placeholder="Add meg az e-mail címed">
 							<button class="newsletter-btn">
 								<i class="fa fa-envelope"></i> Feliratkozás
 							</button>
@@ -249,11 +237,13 @@
 					<div class="col-md-3 col-xs-6">
 						<div class="footer">
 							<h3 class="footer-title">Rólunk</h3>
-							<p>A ReNew Kft. felújított, minőségi laptopokkal foglalkozik, garanciával és kedvező árakkal.</p>
+							<p>A ReNew Kft. felújított, minőségi laptopokkal foglalkozik,
+								garanciával és kedvező árakkal.</p>
 							<ul class="footer-links">
 								<li><a href="#"><i class="fa fa-map-marker"></i>6000
 										Kecskemét, Fő utca 21.</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i>+36 20 123 4567</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i>+36 20 123
+										4567</a></li>
 								<li><a href="#"><i class="fa fa-envelope-o"></i>info@renew.hu</a></li>
 							</ul>
 						</div>
@@ -319,10 +309,11 @@
 							<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
 						</ul>
 						<span class="copyright"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-							ReNew Kft. – Minden jog fenntartva. <i
-							class="fa fa-heart-o" aria-hidden="true"></i> Készítette <a
-							href="https://colorlib.com" target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>
+								document.write(new Date().getFullYear());
+							</script> ReNew Kft. – Minden jog fenntartva. <i class="fa fa-heart-o"
+							aria-hidden="true"></i> Készítette <a href="https://colorlib.com"
+							target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</span>
 					</div>
 				</div>
@@ -342,6 +333,9 @@
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="/js/auth-ui.js"></script>
-	<script src="/js/auth.js"></script>	
+	<script src="/js/auth.js"></script>
+	<script src="/js/chart.js"></script>
+	
+	
 </body>
 </html>

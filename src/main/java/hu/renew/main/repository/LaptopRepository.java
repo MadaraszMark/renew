@@ -1,8 +1,11 @@
 package hu.renew.main.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import hu.renew.main.model.Laptop;
@@ -13,5 +16,11 @@ public interface LaptopRepository extends JpaRepository<Laptop, Integer> {
     Page<Laptop> findByTipusContainingIgnoreCase(String tipus, Pageable pageable);
     Page<Laptop> findByArLessThanEqual(Integer ar, Pageable pageable);
     Page<Laptop> findByDbGreaterThan(Integer db, Pageable pageable);
+    
+    //Chart-hoz
+    @Query("SELECT g.gyarto, COUNT(g) FROM Laptop g GROUP BY g.gyarto")
+    List<Object[]> countLaptopsByManufacturer();
+
+    
 }
 

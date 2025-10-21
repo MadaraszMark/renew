@@ -15,15 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const user = JSON.parse(userData);
     let html = '';
 
-    // Üzenetek menü
-    html += `<li><a href="/messages"><i class="fa fa-envelope"></i> Üzenetek</a></li>`;
-
-    // Admin menü csak adminoknak
-    if (user.role === 'ADMIN') {
-      html += `<li><a href="/admin.html"><i class="fa fa-cog"></i> Admin</a></li>`;
+    // 🔹 Ha USER → csak Üzenetek
+    if (user.role === 'USER') {
+      html += `<li><a href="/messages"><i class="fa fa-envelope"></i> Üzenetek</a></li>`;
     }
 
-    // User + Logout
+    // 🔹 Ha ADMIN → csak Admin
+    if (user.role === 'ADMIN') {
+      html += `<li><a href="/admin"><i class="fa fa-cog"></i> Admin</a></li>`;
+    }
+
+    // 🔹 User e-mail és kijelentkezés
     html += `
       <li><a href="#"><i class="fa fa-user-o"></i> ${user.email}</a></li>
       <li><a href="#" onclick="logoutUser(event)"><i class="fa fa-sign-out"></i> Kijelentkezés</a></li>
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     authContainer.innerHTML = html;
   }
 });
+
 
 async function logoutUser(e) {
   e.preventDefault();

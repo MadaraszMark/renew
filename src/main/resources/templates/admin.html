@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<title>Rólunk - ReNew</title>
+<title>Diagram - ReNew</title>
 
 <!-- Google font -->
 <link
@@ -153,9 +153,9 @@
 				<ul class="main-nav nav navbar-nav" id="navLinks">
 					<li><a href="/">Főoldal</a></li>
 					<li><a href="/store">Termékek</a></li>
-					<li class="active"><a href="/about">Rólunk</a></li>
+					<li><a href="/about">Rólunk</a></li>
 					<li><a href="/contact">Kapcsolat</a></li>
-					<li><a href="/chart">Diagram</a></li>
+					<li class="active"><a href="/chart">Diagram</a></li>
 				</ul>
 				<!-- /NAV -->
 			</div>
@@ -165,46 +165,174 @@
 	</nav>
 	<!-- /NAVIGATION -->
 
-	<!-- ABOUT SECTION -->
+	<!-- ADMIN PANEL -->
 	<div class="section">
 		<div class="container">
 			<div class="row text-center">
 				<div class="col-md-10 col-md-offset-1">
-					<h2 class="text-uppercase">Üdvözöl a <span style="color: #d10024;">ReNew</span>!</h2>
-					<p style="margin-top: 20px; font-size: 16px; line-height: 1.8;">
-						A ReNew Kft. 2020-ban jött létre azzal a céllal, hogy megbízható, minőségi
-						<b>felújított laptopokat</b> kínáljon elérhető áron mind magánszemélyek, mind vállalkozások számára.
-						<br><br>
-						Minden eszközünket szakértő technikusaink vizsgálják be, tisztítják és újratelepítik, így garantáljuk,
-						hogy a vásárlóink <b>újszerű állapotban</b> kapják meg a terméket.
-						<br><br>
-						Célunk, hogy a technológia mindenki számára elérhető legyen, miközben a környezetet is óvjuk az
-						elektronikai hulladék csökkentésével.
-					</p>
+					<h2 class="text-uppercase">
+						Admin <span style="color: #d10024;">Felület</span>
+					</h2>
+					<p class="text-muted" style="margin-bottom: 30px;">Itt láthatod
+						az összes felhasználó által küldött üzenetet</p>
 
-					<hr style="margin: 40px 0;">
+					<!-- TÁBLÁZAT -->
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered"
+							id="adminMessages">
+							<thead style="background-color: #d10024; color: white;">
+								<tr>
+									<th>#</th>
+									<th>Név</th>
+									<th>E-mail</th>
+									<th>Tárgy</th>
+									<th>Üzenet</th>
+									<th>Dátum</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="6" class="text-center text-muted py-4"><i
+										class="fa fa-spinner fa-spin"></i> Üzenetek betöltése...</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-					<h3>Miért válassz minket?</h3>
-					<ul style="list-style: none; padding: 0; font-size: 15px; line-height: 1.9;">
-						<li>✔️ Minden laptop <b>12 hónap garanciával</b> érkezik</li>
-						<li>✔️ <b>Gyors szállítás</b> – akár 2 munkanapon belül</li>
-						<li>✔️ <b>Ingyenes visszaküldés</b> 14 napon belül</li>
-						<li>✔️ <b>Fenntartható</b> megoldás – újrahasznosított technológia</li>
-					</ul>
-
-					<hr style="margin: 40px 0;">
-
-					<h3>Kapcsolat</h3>
-					<p style="margin-top: 10px;">
-						📍 6000 Kecskemét, Fő utca 21.<br>
-						📞 +36 70 234 9876<br>
-						📧 <a href="mailto:info@renew.hu">info@renew.hu</a>
-					</p>
+					<!-- Hiba / visszajelzés -->
+					<div id="adminError" class="text-center" style="margin-top: 20px;"></div>
 				</div>
 			</div>
 		</div>
+		<hr class="my-5">
+
+		<div class="section" id="laptopCrudSection">
+			<div class="container-fluid px-5">
+				<div class="row justify-content-center">
+					<div class="col-lg-11">
+						<h2 class="text-uppercase text-center mb-4">
+							<span class="fw-bold">Laptop</span> <span style="color: #d10024;">CRUD</span>
+							kezelő
+						</h2>
+						<p class="text-muted text-center mb-5">Itt kezelheted az
+							adatbázisban lévő laptopokat – létrehozás, módosítás, törlés.</p>
+
+						<!-- LAPTOPOK TÁBLÁZAT -->
+						<div class="card shadow-lg p-4 mb-5 bg-white rounded">
+							<div class="table-responsive">
+								<table
+									class="table table-striped table-bordered align-middle text-center"
+									id="laptopTable">
+									<thead class="table-danger text-white"
+										style="background-color: #d10024;">
+										<tr>
+											<th style="width: 5%;">ID</th>
+											<th style="width: 10%;">Gyártó</th>
+											<th style="width: 15%;">Típus</th>
+											<th style="width: 8%;">Kijelző</th>
+											<th style="width: 10%;">Memória (GB)</th>
+											<th style="width: 10%;">Merevlemez (GB)</th>
+											<th style="width: 10%;">Videovezérlő</th>
+											<th style="width: 10%;">Processzor</th>
+											<th style="width: 10%;">Operációs rendszer</th>
+											<th style="width: 8%;">Ár (Ft)</th>
+											<th style="width: 6%;">Készlet</th>
+											<th style="width: 8%;">Műveletek</th>
+										</tr>
+									</thead>
+									<tbody id="laptopTableBody">
+										<tr>
+											<td colspan="12" class="text-center text-muted py-4"><i
+												class="fa fa-spinner fa-spin"></i> Laptopok betöltése...</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<!-- ÚJ LAPTOP FELVÉTEL -->
+						<div class="card mt-5 p-4 shadow-sm border-0"
+							style="background-color: #f8f9fa;">
+							<h4 class="mb-4 text-center text-uppercase fw-bold">Új
+								laptop hozzáadása</h4>
+							<form id="addLaptopForm" class="row g-3">
+
+								<div class="col-md-3">
+									<input type="text" name="gyarto" class="form-control"
+										placeholder="Gyártó" required>
+								</div>
+								<div class="col-md-3">
+									<input type="text" name="tipus" class="form-control"
+										placeholder="Típus" required>
+								</div>
+								<div class="col-md-2">
+									<input type="number" name="kijelzo" class="form-control"
+										placeholder="Kijelző (inch)" required>
+								</div>
+								<div class="col-md-2">
+									<input type="number" name="memoria" class="form-control"
+										placeholder="Memória (MB)" required>
+								</div>
+								<div class="col-md-2">
+									<input type="number" name="merevlemez" class="form-control"
+										placeholder="Merevlemez (GB)" required>
+								</div>
+
+								<div class="col-md-4">
+									<input type="text" name="videoVezerlo" class="form-control"
+										placeholder="Videovezérlő (pl. Intel UHD 620)">
+								</div>
+								<div class="col-md-2">
+									<input type="number" name="ar" class="form-control"
+										placeholder="Ár (Ft)" required>
+								</div>
+								<div class="col-md-2">
+									<input type="number" name="db" class="form-control"
+										placeholder="Készlet (db)" required>
+								</div>
+								<div class="col-md-2">
+									<select name="processorId" id="processorSelect"
+										class="form-select" required>
+										<option value="">Válassz processzort...</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<select name="operatingSystemId" id="osSelect"
+										class="form-select" required>
+										<option value="">Válassz OS-t...</option>
+									</select>
+								</div>
+
+								<div class="col-12 text-center mt-4">
+									<button type="submit"
+										class="btn btn-success btn-lg px-5 shadow-sm">
+										<i class="fa fa-plus"></i> Hozzáadás
+									</button>
+								</div>
+							</form>
+						</div>
+
+						<!-- Hiba / visszajelzés -->
+						<div id="laptopError" class="text-center mt-4"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Laptop CRUD script -->
+		<script src="/js/admin-laptops.js"></script>
+
 	</div>
-	<!-- /ABOUT SECTION -->
+	<!-- /ADMIN PANEL -->
+
+
+	<!-- Script -->
+	<script src="/js/admin.js"></script>
+
+
+	<!-- Chart.js -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	<!-- NEWSLETTER -->
 	<div id="newsletter" class="section">
@@ -218,7 +346,8 @@
 							Iratkozz fel a <strong>HÍRLEVELÜNKRE</strong>
 						</p>
 						<form>
-							<input class="input" type="email" placeholder="Add meg az e-mail címed">
+							<input class="input" type="email"
+								placeholder="Add meg az e-mail címed">
 							<button class="newsletter-btn">
 								<i class="fa fa-envelope"></i> Feliratkozás
 							</button>
@@ -249,11 +378,13 @@
 					<div class="col-md-3 col-xs-6">
 						<div class="footer">
 							<h3 class="footer-title">Rólunk</h3>
-							<p>A ReNew Kft. felújított, minőségi laptopokkal foglalkozik, garanciával és kedvező árakkal.</p>
+							<p>A ReNew Kft. felújított, minőségi laptopokkal foglalkozik,
+								garanciával és kedvező árakkal.</p>
 							<ul class="footer-links">
 								<li><a href="#"><i class="fa fa-map-marker"></i>6000
 										Kecskemét, Fő utca 21.</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i>+36 20 123 4567</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i>+36 20 123
+										4567</a></li>
 								<li><a href="#"><i class="fa fa-envelope-o"></i>info@renew.hu</a></li>
 							</ul>
 						</div>
@@ -319,10 +450,11 @@
 							<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
 						</ul>
 						<span class="copyright"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-							ReNew Kft. – Minden jog fenntartva. <i
-							class="fa fa-heart-o" aria-hidden="true"></i> Készítette <a
-							href="https://colorlib.com" target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>
+								document.write(new Date().getFullYear());
+							</script> ReNew Kft. – Minden jog fenntartva. <i class="fa fa-heart-o"
+							aria-hidden="true"></i> Készítette <a href="https://colorlib.com"
+							target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</span>
 					</div>
 				</div>
@@ -342,6 +474,8 @@
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="/js/auth-ui.js"></script>
-	<script src="/js/auth.js"></script>	
+	<script src="/js/auth.js"></script>
+
+
 </body>
 </html>
