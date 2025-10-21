@@ -16,9 +16,9 @@ public class PageController {
         return "store";
     }
 
-    @GetMapping("/product")
+    @GetMapping("/messages")
     public String product() {
-        return "product";
+        return "messages";
     }
 
     @GetMapping("/contact")

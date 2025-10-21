@@ -144,6 +144,31 @@
     cart = [];
     updateCart();
   };
+  
+  // === 💡 Termék részletek (felugró ablak) ===
+window.showProductDetails = function (id) {
+  const product = allProducts.find(p => p.id === id);
+  if (!product) return;
+
+document.getElementById("modalTitle").textContent = `${product.gyarto} ${product.tipus}`;
+  document.getElementById("modalImage").src = `/img/${product.id}.png`;
+    document.getElementById("modalCpu").textContent = product.processorName || "—";
+  document.getElementById("modalOs").textContent = product.operatingSystemName || "—";
+  document.getElementById("modalDisplay").textContent = product.kijelzo || "—";
+  document.getElementById("modalRam").textContent = product.memoria || "—";
+  document.getElementById("modalStorage").textContent = product.merevlemez || "—";
+  document.getElementById("modalGpu").textContent = product.videoVezerlo || "—";
+  document.getElementById("modalStock").textContent = product.db || "—";
+  document.getElementById("modalPrice").textContent = `${(product.ar ?? 0).toLocaleString("hu-HU")} Ft`;
+
+  // Kosárba gomb esemény
+  const addBtn = document.getElementById("modalAddToCart");
+  addBtn.onclick = () => addToCart(product.id);
+
+  // Bootstrap 3 kompatibilis megnyitás
+  $('#productModal').modal('show');
+};
+
 
   // === 🔄 Inicializálás ===
   document.addEventListener("DOMContentLoaded", () => {

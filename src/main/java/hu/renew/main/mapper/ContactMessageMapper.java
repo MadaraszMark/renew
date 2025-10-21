@@ -23,7 +23,7 @@ public class ContactMessageMapper {
                 .name(entity.getName())
                 .email(entity.getEmail())
                 .message(entity.getMessage())
-                .sentAt(entity.getCreatedAt())
+                .createdAt(entity.getCreatedAt())
                 .build();
     }
 }

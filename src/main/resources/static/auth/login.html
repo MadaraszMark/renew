@@ -6,28 +6,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<title>Kapcsolat - ReNew</title>
+<title>Bejelentkezés - ReNew</title>
 
 <!-- Google font -->
-<link
-	href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
 <!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
 
 <!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+<link type="text/css" rel="stylesheet" href="../css/slick.css" />
+<link type="text/css" rel="stylesheet" href="../css/slick-theme.css" />
 
 <!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/nouislider.min.css" />
 
 <!-- Font Awesome Icon -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/font-awesome.min.css">
 
 <!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -164,23 +162,16 @@
 	</nav>
 	<!-- /NAVIGATION -->
 
-	<!-- KAPCSOLAT -->
+	<!-- BEJELENTKEZÉS -->
 	<div class="section">
 		<div class="container">
 			<div class="row text-center">
-				<div class="col-md-8 col-md-offset-2">
-					<h2 class="text-uppercase">Lépj kapcsolatba velünk</h2>
-					<p class="text-muted" style="margin-bottom: 30px;">Kérdésed van
-						termékeinkkel kapcsolatban? Írj nekünk bátran az alábbi űrlapon
-						keresztül!</p>
+				<div class="col-md-6 col-md-offset-3">
+					<h2 class="text-uppercase">Bejelentkezés</h2>
+					<p class="text-muted" style="margin-bottom: 30px;">Jelentkezz
+						be az oldalra a fiókod adataival.</p>
 
-					<form id="contactForm" class="text-left">
-						<div class="form-group">
-							<label for="name">Név</label> <input type="text" id="name"
-								name="name" class="form-control" placeholder="Add meg a neved"
-								required>
-						</div>
-
+					<form id="loginForm" class="text-left">
 						<div class="form-group">
 							<label for="email">E-mail cím</label> <input type="email"
 								id="email" name="email" class="form-control"
@@ -188,33 +179,30 @@
 						</div>
 
 						<div class="form-group">
-							<label for="subject">Tárgy</label> <input type="text"
-								id="subject" name="subject" class="form-control"
-								placeholder="Pl.: Érdeklődés egy termékről" required>
+							<label for="password">Jelszó</label> <input type="password"
+								id="password" name="password" class="form-control"
+								placeholder="Add meg a jelszavad" required>
 						</div>
 
-						<div class="form-group">
-							<label for="message">Üzenet</label>
-							<textarea id="message" name="message" rows="5"
-								class="form-control" placeholder="Írd ide az üzeneted..."
-								required></textarea>
-						</div>
-
-						<div class="text-center" style="margin-top: 20px;">
+						<div class="text-center" style="margin-top: 25px;">
 							<button type="submit" class="btn btn-danger btn-lg shadow-sm">
-								<i class="fa fa-paper-plane"></i> Üzenet küldése
+								<i class="fa fa-sign-in"></i> Bejelentkezés
 							</button>
 						</div>
 					</form>
 
-					<!-- Üzenet visszajelzés -->
-					<div id="responseMessage" class="text-center"
+					<div id="loginMessage" class="text-center"
 						style="margin-top: 25px;"></div>
+
+					<p class="text-muted" style="margin-top: 15px;">
+						Még nincs fiókod? <a href="/auth/register.html"
+							style="color: #d10024;">Regisztrálj itt</a>.
+					</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- /KAPCSOLAT -->
+	<!-- /BEJELENTKEZÉS -->
 
 	<!-- NEWSLETTER -->
 	<div id="newsletter" class="section">
@@ -334,8 +322,7 @@
 						<span class="copyright"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							Copyright &copy;<script>
 								document.write(new Date().getFullYear());
-							</script>
-							ReNew Kft. – Minden jog fenntartva. <i class="fa fa-heart-o"
+							</script> ReNew Kft. – Minden jog fenntartva. <i class="fa fa-heart-o"
 							aria-hidden="true"></i> Készítette <a href="https://colorlib.com"
 							target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</span>
@@ -356,8 +343,7 @@
 	<script src="js/nouislider.min.js"></script>
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/contact.js"></script>
-	<script src="/js/auth-ui.js"></script>
+	<script src="../js/auth/login.js"></script>
 	<script src="/js/auth.js"></script>
 	
 </body>

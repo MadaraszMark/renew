@@ -15,6 +15,6 @@ public class ContactMessageResponse {
     private String name;
     private String email;
     private String message;
-    private LocalDateTime sentAt;
+    private LocalDateTime createdAt;
 }
 

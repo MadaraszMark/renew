@@ -155,6 +155,9 @@
 					<li><a href="/store">Termékek</a></li>
 					<li><a href="/about">Rólunk</a></li>
 					<li><a href="/contact">Kapcsolat</a></li>
+					<li id="messagesMenu" style="display: none;"><a
+						href="/messages"><i class="fa fa-envelope"></i> Üzenetek</a>
+					</li>
 				</ul>
 				<!-- /NAV -->
 			</div>
@@ -240,8 +243,7 @@
 							<ul class="section-tab-nav tab-nav">
 								<li class="active"><a data-toggle="tab" href="#tab1">Irodai
 										laptopok</a></li>
-								<li><a data-toggle="tab" href="#tab1">Gamer
-										laptopok</a></li>
+								<li><a data-toggle="tab" href="#tab1">Gamer laptopok</a></li>
 								<li><a data-toggle="tab" href="#tab1">Üzleti laptopok</a></li>
 							</ul>
 						</div>
@@ -420,49 +422,49 @@
 	<!-- /SECTION -->
 
 	<!-- AKCIÓS SZEKCIÓ -->
-<div id="hot-deal" class="section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hot-deal">
-					<ul class="hot-deal-countdown">
-						<li>
-							<div>
-								<h3 id="days">00</h3>
-								<span>Nap</span>
-							</div>
-						</li>
-						<li>
-							<div>
-								<h3 id="hours">00</h3>
-								<span>Óra</span>
-							</div>
-						</li>
-						<li>
-							<div>
-								<h3 id="minutes">00</h3>
-								<span>Perc</span>
-							</div>
-						</li>
-						<li>
-							<div>
-								<h3 id="seconds">00</h3>
-								<span>Mp</span>
-							</div>
-						</li>
-					</ul>
-					<h2 class="text-uppercase">Heti akció</h2>
-					<p>Akár 50% kedvezmény laptopjainkra!</p>
-					<a class="primary-btn cta-btn" href="#">Vásárlás</a>
+	<div id="hot-deal" class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hot-deal">
+						<ul class="hot-deal-countdown">
+							<li>
+								<div>
+									<h3 id="days">00</h3>
+									<span>Nap</span>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3 id="hours">00</h3>
+									<span>Óra</span>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3 id="minutes">00</h3>
+									<span>Perc</span>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3 id="seconds">00</h3>
+									<span>Mp</span>
+								</div>
+							</li>
+						</ul>
+						<h2 class="text-uppercase">Heti akció</h2>
+						<p>Akár 50% kedvezmény laptopjainkra!</p>
+						<a class="primary-btn cta-btn" href="#">Vásárlás</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- /AKCIÓS SZEKCIÓ -->
+	<!-- /AKCIÓS SZEKCIÓ -->
 
-<!-- Egyszerű visszaszámláló -->
-<script>
+	<!-- Egyszerű visszaszámláló -->
+	<script>
 function startCountdown(durationHours) {
 	const countdownTime = durationHours * 60 * 60 * 1000;
 	let endTime = new Date().getTime() + countdownTime;
@@ -493,96 +495,128 @@ function startCountdown(durationHours) {
 startCountdown(72);
 </script>
 
-<!-- SZEKCIÓ -->
-<div class="section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="top-selling-wrapper">
-					<div class="section-title">
-						<h4 class="title">Legnépszerűbb laptopok</h4>
-						<div class="section-nav">
-							<div id="slick-nav-3" class="products-slick-nav"></div>
+	<!-- SZEKCIÓ -->
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="top-selling-wrapper">
+						<div class="section-title">
+							<h4 class="title">Legnépszerűbb laptopok</h4>
+							<div class="section-nav">
+								<div id="slick-nav-3" class="products-slick-nav"></div>
+							</div>
 						</div>
+
+						<div class="products-widget-slick" data-nav="#slick-nav-3">
+							<div>
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="./img/product07.png" alt="Dell Latitude 7490">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Üzleti laptop</p>
+										<h3 class="product-name">
+											<a href="#">Dell Latitude 7490</a>
+										</h3>
+										<h4 class="product-price">
+											199 900 Ft
+											<del class="product-old-price">229 900 Ft</del>
+										</h4>
+									</div>
+								</div>
+
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="./img/product08.png" alt="HP EliteBook 840 G3">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Irodai laptop</p>
+										<h3 class="product-name">
+											<a href="#">HP EliteBook 840 G3</a>
+										</h3>
+										<h4 class="product-price">
+											209 900 Ft
+											<del class="product-old-price">239 900 Ft</del>
+										</h4>
+									</div>
+								</div>
+
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="./img/product09.png" alt="ThinkPad T480">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Prémium laptop</p>
+										<h3 class="product-name">
+											<a href="#">ThinkPad T480</a>
+										</h3>
+										<h4 class="product-price">
+											239 900 Ft
+											<del class="product-old-price">269 900 Ft</del>
+										</h4>
+									</div>
+								</div>
+							</div>
+
+							<div>
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="./img/product01.png" alt="Asus VivoBook 15">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Otthoni laptop</p>
+										<h3 class="product-name">
+											<a href="#">Asus VivoBook 15</a>
+										</h3>
+										<h4 class="product-price">
+											179 900 Ft
+											<del class="product-old-price">199 900 Ft</del>
+										</h4>
+									</div>
+								</div>
+
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="./img/product02.png" alt="MacBook Air M1">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Ultrabook</p>
+										<h3 class="product-name">
+											<a href="#">MacBook Air M1</a>
+										</h3>
+										<h4 class="product-price">
+											359 900 Ft
+											<del class="product-old-price">399 900 Ft</del>
+										</h4>
+									</div>
+								</div>
+
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="./img/product03.png" alt="HP ProBook 450 G5">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Üzleti laptop</p>
+										<h3 class="product-name">
+											<a href="#">HP ProBook 450 G5</a>
+										</h3>
+										<h4 class="product-price">
+											219 900 Ft
+											<del class="product-old-price">249 900 Ft</del>
+										</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /products-widget-slick -->
 					</div>
-
-					<div class="products-widget-slick" data-nav="#slick-nav-3">
-						<div>
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/product07.png" alt="Dell Latitude 7490">
-								</div>
-								<div class="product-body">
-									<p class="product-category">Üzleti laptop</p>
-									<h3 class="product-name"><a href="#">Dell Latitude 7490</a></h3>
-									<h4 class="product-price">199 900 Ft <del class="product-old-price">229 900 Ft</del></h4>
-								</div>
-							</div>
-
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/product08.png" alt="HP EliteBook 840 G3">
-								</div>
-								<div class="product-body">
-									<p class="product-category">Irodai laptop</p>
-									<h3 class="product-name"><a href="#">HP EliteBook 840 G3</a></h3>
-									<h4 class="product-price">209 900 Ft <del class="product-old-price">239 900 Ft</del></h4>
-								</div>
-							</div>
-
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/product09.png" alt="ThinkPad T480">
-								</div>
-								<div class="product-body">
-									<p class="product-category">Prémium laptop</p>
-									<h3 class="product-name"><a href="#">ThinkPad T480</a></h3>
-									<h4 class="product-price">239 900 Ft <del class="product-old-price">269 900 Ft</del></h4>
-								</div>
-							</div>
-						</div>
-
-						<div>
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/product01.png" alt="Asus VivoBook 15">
-								</div>
-								<div class="product-body">
-									<p class="product-category">Otthoni laptop</p>
-									<h3 class="product-name"><a href="#">Asus VivoBook 15</a></h3>
-									<h4 class="product-price">179 900 Ft <del class="product-old-price">199 900 Ft</del></h4>
-								</div>
-							</div>
-
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/product02.png" alt="MacBook Air M1">
-								</div>
-								<div class="product-body">
-									<p class="product-category">Ultrabook</p>
-									<h3 class="product-name"><a href="#">MacBook Air M1</a></h3>
-									<h4 class="product-price">359 900 Ft <del class="product-old-price">399 900 Ft</del></h4>
-								</div>
-							</div>
-
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/product03.png" alt="HP ProBook 450 G5">
-								</div>
-								<div class="product-body">
-									<p class="product-category">Üzleti laptop</p>
-									<h3 class="product-name"><a href="#">HP ProBook 450 G5</a></h3>
-									<h4 class="product-price">219 900 Ft <del class="product-old-price">249 900 Ft</del></h4>
-								</div>
-							</div>
-						</div>
-					</div> <!-- /products-widget-slick -->
-				</div> <!-- /top-selling-wrapper -->
+					<!-- /top-selling-wrapper -->
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- /SZEKCIÓ -->
+	<!-- /SZEKCIÓ -->
 
 
 	<!-- NEWSLETTER -->
@@ -597,7 +631,8 @@ startCountdown(72);
 							Iratkozz fel a <strong>HÍRLEVELÜNKRE</strong>
 						</p>
 						<form>
-							<input class="input" type="email" placeholder="Add meg az e-mail címed">
+							<input class="input" type="email"
+								placeholder="Add meg az e-mail címed">
 							<button class="newsletter-btn">
 								<i class="fa fa-envelope"></i> Feliratkozás
 							</button>
@@ -628,11 +663,13 @@ startCountdown(72);
 					<div class="col-md-3 col-xs-6">
 						<div class="footer">
 							<h3 class="footer-title">Rólunk</h3>
-							<p>A ReNew Kft. felújított, minőségi laptopokkal foglalkozik, garanciával és kedvező árakkal.</p>
+							<p>A ReNew Kft. felújított, minőségi laptopokkal foglalkozik,
+								garanciával és kedvező árakkal.</p>
 							<ul class="footer-links">
 								<li><a href="#"><i class="fa fa-map-marker"></i>6000
 										Kecskemét, Fő utca 21.</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i>+36 20 123 4567</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i>+36 20 123
+										4567</a></li>
 								<li><a href="#"><i class="fa fa-envelope-o"></i>info@renew.hu</a></li>
 							</ul>
 						</div>
@@ -699,9 +736,9 @@ startCountdown(72);
 						</ul>
 						<span class="copyright"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-							ReNew Kft. – Minden jog fenntartva. <i
-							class="fa fa-heart-o" aria-hidden="true"></i> Készítette <a
-							href="https://colorlib.com" target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							ReNew Kft. – Minden jog fenntartva. <i class="fa fa-heart-o"
+							aria-hidden="true"></i> Készítette <a href="https://colorlib.com"
+							target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</span>
 					</div>
 				</div>
@@ -720,55 +757,8 @@ startCountdown(72);
 	<script src="js/nouislider.min.js"></script>
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/main.js"></script>
-
-	<script>
-  function renderAuthLinks() {
-    const authContainer = document.getElementById('authLinks');
-    const userData = localStorage.getItem('user');
-    authContainer.innerHTML = '';
-
-    if (!userData) {
-      // Nem bejelentkezett felhasználó
-      authContainer.innerHTML = `
-        <li><a href="/auth/register.html"><i class="fa fa-user-plus"></i> Regisztráció</a></li>
-        <li><a href="/auth/login.html"><i class="fa fa-sign-in"></i> Bejelentkezés</a></li>
-      `;
-    } else {
-      const user = JSON.parse(userData);
-      let html = '';
-
-      // Minden bejelentkezett felhasználónak van "Üzenetek"
-      html += `<li><a href="#"><i class="fa fa-envelope"></i> Üzenetek</a></li>`;
-
-      // Ha admin, hozzáadjuk az Admin menüt is
-      if (user.role === 'ADMIN') {
-        html += `<li><a href="#"><i class="fa fa-cog"></i> Admin</a></li>`;
-      }
-
-      // Bejelentkezett user email + Logout
-      html += `
-        <li><a href="#"><i class="fa fa-user-o"></i> ${user.email}</a></li>
-        <li><a href="#" onclick="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
-      `;
-
-      authContainer.innerHTML = html;
-    }
-  }
-
-  async function logout() {
-    try {
-      await fetch('/api/auth/logout', { method: 'POST' });
-    } catch (err) {
-      console.warn('Logout API hiba:', err);
-    } finally {
-      localStorage.removeItem('user');
-      window.location.reload();
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', renderAuthLinks);
-</script>
-
+	<script src="/js/auth-ui.js"></script>
+<script src="/js/auth.js"></script>
 
 </body>
 </html>

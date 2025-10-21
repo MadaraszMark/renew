@@ -13,17 +13,18 @@ import hu.renew.main.dto.RegisterRequest;
 import hu.renew.main.mapper.UserMapper;
 import hu.renew.main.model.User;
 import hu.renew.main.repository.UserRepository;
+import hu.renew.main.security.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor // automatikus konstruktor generálás
+@RequiredArgsConstructor
 public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
+    private final JwtTokenUtil jwtTokenUtil;
 
-    // Új felhasználó regisztrációja
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Ez az e-mail cím már használatban van!");
@@ -36,18 +37,39 @@ public class AuthService {
 
         User saved = userRepository.save(user);
 
-        return userMapper.toResponse(saved, "Sikeres regisztráció!");
+        String token = jwtTokenUtil.generateToken(user.getEmail(), user.getRole());
+
+        return AuthResponse.builder()
+                .email(saved.getEmail())
+                .role(saved.getRole().toString())
+                .token(token)
+                .message("Sikeres regisztráció!")
+                .build();
+    }
+    
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Felhasználó nem található"));
     }
 
-    // Bejelentkezés ellenőrzése
+    // 🔹 Bejelentkezés
     public AuthResponse login(LoginRequest request) {
-        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Hibás e-mail cím vagy jelszó."));
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Hibás e-mail cím vagy jelszó."));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Hibás e-mail cím vagy jelszó.");
         }
 
-        return userMapper.toResponse(user, "Sikeres bejelentkezés!");
+        String token = jwtTokenUtil.generateToken(user.getEmail(), user.getRole());
+
+        return AuthResponse.builder()
+                .email(user.getEmail())
+                .role(user.getRole().toString())
+                .token(token)
+                .message("Sikeres bejelentkezés!")
+                .build();
     }
 }
+
 
