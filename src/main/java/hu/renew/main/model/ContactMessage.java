@@ -41,5 +41,9 @@ public class ContactMessage {
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 }
 

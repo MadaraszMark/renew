@@ -25,39 +25,43 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
-				.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+		http.csrf(csrf -> csrf.disable())
+			.cors(cors -> cors.disable())
+			.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+			.authorizeHttpRequests(auth -> auth
 
-				.authorizeHttpRequests(auth -> auth
+				// 🔓 Nyilvános frontend fájlok (HTML, JS, CSS stb.)
+				.requestMatchers("/", "/index.html", "/css/**", "/js/**", "/img/**", "/fonts/**",
+						"/favicon.ico", "/store/**", "/contact/**", "/auth/**", "/messages/**",
+						"/chart/**", "/about/**")
+				.permitAll()
 
-						// 🔓 Nyilvános frontend fájlok (HTML, JS, CSS stb.)
-						.requestMatchers("/", "/index.html", "/css/**", "/js/**", "/img/**", "/fonts/**",
-								"/favicon.ico", "/store/**", "/contact/**", "/auth/**", "/messages/**", "/chart/**",
-								"/about/**")
-						.permitAll()
+				// 🔓 Auth végpontok
+				.requestMatchers("/auth/register", "/auth/login").permitAll()
 
-						// 🔓 Auth végpontok
-						.requestMatchers("/auth/register", "/auth/login").permitAll()
+				// 🔓 Publikus API-k (processzorok, OS, laptopok, diagram)
+				.requestMatchers("/api/processors/**", "/api/os/**", "/api/laptops/**", "/api/chart/**")
+				.permitAll()
 
-						// 🔓 Publikus API-k (processzorok, OS, laptopok, diagram)
-						.requestMatchers("/api/processors/**", "/api/os/**", "/api/laptops/**", "/api/chart/**").permitAll()
+				// 🔓 Kosár REST API (publikus elérés)
+				.requestMatchers("/api/cart/**").permitAll()
 
-						// 🔓 Üzenetküldés engedélyezett
-						.requestMatchers(HttpMethod.POST, "/api/contact").permitAll()
+				// 🔓 Üzenetküldés engedélyezett
+				.requestMatchers(HttpMethod.POST, "/api/contact").permitAll()
 
-						// 🔒 Üzenetek lekérése (bejelentkezett)
-						.requestMatchers(HttpMethod.GET, "/api/contact").authenticated()
+				// 🔒 Üzenetek lekérése (bejelentkezett)
+				.requestMatchers(HttpMethod.GET, "/api/contact").authenticated()
 
-						// 🟢 az admin oldal statikusan betölthető
-						.requestMatchers("/admin", "/admin/**", "/admin.html").permitAll()
+				// 🟢 az admin oldal statikusan betölthető
+				.requestMatchers("/admin", "/admin/**", "/admin.html").permitAll()
 
-						// 🔒 az admin API továbbra is csak ROLE_ADMIN
-						.requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+				// 🔒 az admin API továbbra is csak ROLE_ADMIN
+				.requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
 
-						// 🔒 Minden más védett
-						.anyRequest().authenticated())
-
-				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+				// 🔒 Minden más védett
+				.anyRequest().authenticated()
+			)
+			.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
 	}
@@ -72,3 +76,4 @@ public class SecurityConfig {
 		return cfg.getAuthenticationManager();
 	}
 }
+

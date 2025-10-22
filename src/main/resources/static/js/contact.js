@@ -42,6 +42,29 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ name, email, subject, message })
       });
 
+      // Ha a backend új JWT tokent küld vissza a vendégnek
+      const authHeader = res.headers.get("Authorization");
+      if (authHeader && authHeader.startsWith("Bearer ")) {
+  const token = authHeader.substring(7);
+  localStorage.setItem("token", token);
+
+  // Mentjük a vendég felhasználót
+  localStorage.setItem(
+    "user",
+    JSON.stringify({
+      email,
+      role: "GUEST",
+      username: name || "Vendég"
+    })
+  );
+
+  // 🔁 Újratöltjük az oldalt, hogy a login állapot aktiválódjon
+  setTimeout(() => {
+    window.location.reload();
+  }, 1000);
+}
+
+
       if (res.ok) {
         responseMessage.innerHTML = `
           <div class="alert alert-success text-center">
@@ -67,4 +90,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-

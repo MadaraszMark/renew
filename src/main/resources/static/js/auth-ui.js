@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (user.role === 'USER') {
       html += `<li><a href="/messages"><i class="fa fa-envelope"></i> Üzenetek</a></li>`;
     }
+    
+    if (user.role === 'GUEST') {
+      html += `<li><a href="/messages"><i class="fa fa-envelope"></i> Üzenetek</a></li>`;
+    }
 
     // 🔹 Ha ADMIN → csak Admin
     if (user.role === 'ADMIN') {
