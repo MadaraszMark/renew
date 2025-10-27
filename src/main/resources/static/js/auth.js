@@ -1,3 +1,5 @@
+const contextPath = window.contextPath || '/';
+
 // ---------------------------
 // 🔽 Menü megjelenítés jogosultság alapján
 // ---------------------------
@@ -24,17 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
       menuMessages.style.display = "inline-block";
     }
 
-    // ADMIN szerepkör → Admin menü megjelenítése (nem közvetlen link!)
+    // ADMIN → admin menü
     if (role === "ADMIN" && menuAdmin) {
       menuAdmin.style.display = "inline-block";
       menuAdmin.innerHTML = `<a href="#" id="openAdmin"><i class="fa fa-cog"></i> Admin</a>`;
-      
-      // JS-ből kezeljük a navigációt
+
       const openAdminBtn = document.getElementById("openAdmin");
       if (openAdminBtn) {
         openAdminBtn.addEventListener("click", (e) => {
           e.preventDefault();
-          window.location.href = "/admin.html"; // vagy /admin ha Controllerből jön
+          window.location.href = `${contextPath}admin`;
         });
       }
     }
@@ -47,24 +48,28 @@ document.addEventListener("DOMContentLoaded", () => {
 // ---------------------------
 // 🔒 Admin oldal védelme – ha valaki közvetlenül beírja az URL-t
 // ---------------------------
-if (window.location.pathname === "/admin.html" || window.location.pathname === "/admin") {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    alert("🚫 Ehhez az oldalhoz be kell jelentkezned!");
-    window.location.href = "/";
-  } else {
+document.addEventListener("DOMContentLoaded", () => {
+  const contextPath = window.contextPath || '/';
+  if (window.location.pathname.endsWith("/admin") || window.location.pathname.endsWith("/admin.html")) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("🚫 Ehhez az oldalhoz be kell jelentkezned!");
+      window.location.href = contextPath;
+      return;
+    }
     try {
       const payload = JSON.parse(atob(token.split(".")[1]));
       const role = payload.role || payload.roles || "";
       if (role !== "ADMIN") {
         alert("🚫 Nincs jogosultságod az admin felülethez!");
-        window.location.href = "/";
+        window.location.href = contextPath;
       }
     } catch (error) {
       console.error("JWT ellenőrzési hiba:", error);
-      window.location.href = "/";
+      window.location.href = contextPath;
     }
   }
-}
+});
+
 
 

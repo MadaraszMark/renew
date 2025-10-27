@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartBadge = document.querySelector(".dropdown .qty");
   const cartList = document.querySelector(".cart-list");
   const cartSummary = document.querySelector(".cart-summary");
-  const API_BASE = "/api/cart";
+  
+  const API_BASE = `${contextPath}api/cart`;
 
   // === 🔑 Session ID (egyedi kosár minden userhez)
   let sessionId = localStorage.getItem("sessionId");
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // === 📦 Termékek betöltése ===
   async function loadProducts() {
     try {
-      const res = await fetch("/api/laptops?page=0&size=12");
+      const res = await fetch(`${contextPath}api/laptops?page=0&size=12`);
       if (!res.ok) throw new Error("Nem sikerült betölteni a laptopokat");
       const data = await res.json();
       allProducts = data.content || [];
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-4 col-xs-6">
         <div class="product">
           <div class="product-img" style="cursor:pointer;" onclick="showProductDetails(${l.id})">
-            <img src="/img/${l.id}.png" alt="${title}" onerror="this.src='/img/logo.png'">
+            <img src="${contextPath}img/${l.id}.png" alt="${title}" onerror="this.src='${contextPath}img/logo.png'">
           </div>
           <div class="product-body">
             <p class="product-category">${l.operatingSystemName || "—"}</p>
@@ -53,105 +54,101 @@ document.addEventListener("DOMContentLoaded", () => {
             <h4 class="product-price">${ar} Ft</h4>
           </div>
           <div class="add-to-cart">
-  <button type="button" class="add-to-cart-btn"
-    onclick="event.stopPropagation(); addToCart(${l.id}, event)">
-    <i class="fa fa-shopping-cart"></i> Kosárba
-  </button>
-</div>
+            <button type="button" class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart(${l.id}, event)">
+              <i class="fa fa-shopping-cart"></i> Kosárba
+            </button>
+          </div>
         </div>
       </div>`;
   }
 
   // === 🧺 Kosár frissítése (REST alapú) ===
-async function updateCart() {
-  try {
-    const res = await fetch(`${API_BASE}/session/${sessionId}`);
-    if (!res.ok) throw new Error(`Kosár betöltése sikertelen (${res.status})`);
-    const cart = await res.json();
+  async function updateCart() {
+    try {
+      const res = await fetch(`${API_BASE}/session/${sessionId}`);
+      if (!res.ok) throw new Error(`Kosár betöltése sikertelen (${res.status})`);
+      const cart = await res.json();
 
-    if (!cartList || !cartSummary) return;
+      if (!cartList || !cartSummary) return;
 
-    if (cart.length === 0) {
-      if (cartBadge) cartBadge.textContent = "0";
-      cartList.innerHTML = `<p class="text-center text-muted">Nincs termék a kosárban</p>`;
-      cartSummary.innerHTML = `<small>Összesen: 0 Ft</small>`;
-      return;
+      if (cart.length === 0) {
+        if (cartBadge) cartBadge.textContent = "0";
+        cartList.innerHTML = `<p class="text-center text-muted">Nincs termék a kosárban</p>`;
+        cartSummary.innerHTML = `<small>Összesen: 0 Ft</small>`;
+        return;
+      }
+
+      let total = 0, totalQty = 0;
+      cartList.innerHTML = cart.map(item => {
+        total += item.price * item.quantity;
+        totalQty += item.quantity;
+        return `
+          <div class="product-widget">
+            <div class="product-img">
+              <img src="${contextPath}img/${item.productId}.png" alt="${item.productName}" onerror="this.src='${contextPath}img/logo.png'">
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">${item.productName}</h3>
+              <h4 class="product-price">
+                <span class="qty">${item.quantity}x</span>
+                ${(item.price * item.quantity).toLocaleString("hu-HU")} Ft
+              </h4>
+            </div>
+            <button class="delete" onclick="removeFromCart(${item.id})"><i class="fa fa-close"></i></button>
+          </div>`;
+      }).join("");
+
+      if (cartBadge) cartBadge.textContent = totalQty;
+      cartSummary.innerHTML = `
+        <small>${cart.length} termék</small>
+        <h5>Összesen: ${total.toLocaleString("hu-HU")} Ft</h5>
+        <button onclick="clearCart()" class="btn btn-sm btn-outline-danger w-100 mt-2">
+          <i class="fa fa-trash"></i> Kosár ürítése
+        </button>`;
+    } catch (err) {
+      console.error("❌ Kosár frissítési hiba:", err.message);
     }
-
-    let total = 0, totalQty = 0;
-    cartList.innerHTML = cart.map(item => {
-      total += item.price * item.quantity;
-      totalQty += item.quantity;
-      return `
-        <div class="product-widget">
-          <div class="product-img">
-            <img src="/img/${item.productId}.png" alt="${item.productName}" onerror="this.src='/img/logo.png'">
-          </div>
-          <div class="product-body">
-            <h3 class="product-name">${item.productName}</h3>
-            <h4 class="product-price">
-              <span class="qty">${item.quantity}x</span>
-              ${(item.price * item.quantity).toLocaleString("hu-HU")} Ft
-            </h4>
-          </div>
-          <button class="delete" onclick="removeFromCart(${item.id})"><i class="fa fa-close"></i></button>
-        </div>`;
-    }).join("");
-
-    // 🔹 Összesítés + kosár ikon frissítése
-    if (cartBadge) cartBadge.textContent = totalQty;
-    cartSummary.innerHTML = `
-      <small>${cart.length} termék</small>
-      <h5>Összesen: ${total.toLocaleString("hu-HU")} Ft</h5>
-      <button onclick="clearCart()" class="btn btn-sm btn-outline-danger w-100 mt-2">
-        <i class="fa fa-trash"></i> Kosár ürítése
-      </button>`;
-  } catch (err) {
-    console.error("❌ Kosár frissítési hiba:", err.message);
   }
-}
 
-
-  // === 🧩 Globális kosárfüggvények (window-on elérhető!)
+  // === 🧩 Globális kosárfüggvények ===
   window.addToCart = async function (id, e) {
-  if (e) e.stopPropagation();
-  const product = allProducts.find(p => p.id === id);
-  if (!product) return;
+    if (e) e.stopPropagation();
+    const product = allProducts.find(p => p.id === id);
+    if (!product) return;
 
-  const item = {
-    sessionId,
-    productId: id,
-    productName: `${product.gyarto} ${product.tipus}`,
-    quantity: 1,
-    price: product.ar
-  };
+    const item = {
+      sessionId,
+      productId: id,
+      productName: `${product.gyarto} ${product.tipus}`,
+      quantity: 1,
+      price: product.ar
+    };
 
-  try {
-    const res = await fetch("/api/cart/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(item)
-    });
+    try {
+      const res = await fetch(`${contextPath}api/cart/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item)
+      });
 
-    if (!res.ok) throw new Error("Nem sikerült a kosárba helyezni.");
-    await updateCart(); // 🔥 FONTOS: azonnal frissítjük a kosarat
+      if (!res.ok) throw new Error("Nem sikerült a kosárba helyezni.");
+      await updateCart();
 
-    // 🔹 Visszajelzés a gombon
-    const btn = e?.target?.closest("button");
-    if (btn) {
-      const oldText = btn.innerHTML;
-      btn.innerHTML = "✅ Hozzáadva!";
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.innerHTML = oldText;
-        btn.disabled = false;
-      }, 1500);
+      const btn = e?.target?.closest("button");
+      if (btn) {
+        const oldText = btn.innerHTML;
+        btn.innerHTML = "✅ Hozzáadva!";
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.innerHTML = oldText;
+          btn.disabled = false;
+        }, 1500);
+      }
+    } catch (err) {
+      console.error("❌ Kosár hiba:", err);
     }
-  } catch (err) {
-    console.error("❌ Kosár hiba:", err);
-  }
-};
-
+  };
 
   window.removeFromCart = async function (id) {
     try {
@@ -179,7 +176,7 @@ async function updateCart() {
     if (!product) return;
 
     document.getElementById("modalTitle").textContent = `${product.gyarto} ${product.tipus}`;
-    document.getElementById("modalImage").src = `/img/${product.id}.png`;
+    document.getElementById("modalImage").src = `${contextPath}img/${product.id}.png`;
     document.getElementById("modalCpu").textContent = product.processorName || "—";
     document.getElementById("modalOs").textContent = product.operatingSystemName || "—";
     document.getElementById("modalDisplay").textContent = product.kijelzo || "—";

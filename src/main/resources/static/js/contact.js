@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 📨 Küldés a backendnek
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${contextPath}api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, subject, message })

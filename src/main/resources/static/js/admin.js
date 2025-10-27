@@ -3,11 +3,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   const userData = localStorage.getItem("user");
   const tableBody = document.querySelector("#adminMessages tbody");
   const errorDiv = document.getElementById("adminError");
+  
+  const contextPath = window.contextPath || '/';
 
   // 🔒 Ha nincs token vagy felhasználói adat → átirányítás login oldalra
   if (!token || !userData) {
     alert("🔐 Ehhez az oldalhoz be kell jelentkezned!");
-    window.location.href = "/auth/login.html";
+    window.location.href = `${contextPath}login`;
     return;
   }
 
@@ -16,13 +18,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 🔒 Ha nem admin → nincs jogosultság
   if (user.role !== "ADMIN") {
     alert("🚫 Nincs jogosultságod az admin felülethez!");
-    window.location.href = "/";
+    window.location.href = contextPath;
     return;
   }
 
   try {
     // 🔹 Adatok lekérése a backendtől
-    const response = await fetch("/api/contact", {
+    const response = await fetch(`${contextPath}api/contact`, {
       headers: {
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json"

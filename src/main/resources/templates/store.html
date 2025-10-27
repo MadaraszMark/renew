@@ -7,18 +7,19 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <title>Termékek - ReNew</title>
+<base href="/jgch8q/">
 
+<!-- Google font -->
 <!-- Google font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
 	rel="stylesheet">
-
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/slick.css}" rel="stylesheet" />
+<link th:href="@{/css/slick-theme.css}" rel="stylesheet" />
+<link th:href="@{/css/nouislider.min.css}" rel="stylesheet" />
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,6 +29,8 @@
 		<![endif]-->
 
 </head>
+<base href="/jgch8q/">
+
 <body>
 	<!-- HEADER -->
 	<header>
@@ -43,10 +46,11 @@
 							Kecskemét Fő utca 21.</a></li>
 				</ul>
 				<ul class="header-links pull-right" id="authLinks">
-					<li><a href="/auth/register.html"><i
-							class="fa fa-user-plus"></i> Regisztráció</a></li>
-					<li><a href="/auth/login.html"><i class="fa fa-sign-in"></i>
+					<li><a th:href="@{/register}"><i class="fa fa-user-plus"></i>
+							Regisztráció</a></li>
+					<li><a th:href="@{/login}"><i class="fa fa-sign-in"></i>
 							Bejelentkezés</a></li>
+
 				</ul>
 			</div>
 		</div>
@@ -54,6 +58,7 @@
 
 		<!-- MAIN HEADER -->
 		<div id="header">
+			<base href="/jgch8q/">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
@@ -61,7 +66,8 @@
 					<!-- LOGO -->
 					<div class="col-md-3">
 						<div class="header-logo">
-							<a href="/" class="logo"> <img src="./img/logo.png" alt="">
+							<a th:href="@{/}" class="logo"> <img
+								th:src="@{/img/logo.png}" alt="">
 							</a>
 						</div>
 					</div>
@@ -142,12 +148,13 @@
 			<div id="responsive-nav">
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav" id="navLinks">
-					<li><a href="/">Főoldal</a></li>
-					<li class="active"><a href="/store">Termékek</a></li>
-					<li><a href="/about">Rólunk</a></li>
-					<li><a href="/contact">Kapcsolat</a></li>
-					<li><a href="/chart">Diagram</a></li>
+					<li><a th:href="@{/}">Főoldal</a></li>
+					<li class="active"><a th:href="@{/store}">Termékek</a></li>
+					<li><a th:href="@{/about}">Rólunk</a></li>
+					<li><a th:href="@{/contact}">Kapcsolat</a></li>
+					<li><a th:href="@{/chart}">Diagram</a></li>
 				</ul>
+
 				<!-- /NAV -->
 			</div>
 			<!-- /responsive-nav -->
@@ -498,16 +505,21 @@
 	</footer>
 	<!-- /FOOTER -->
 
+	<!-- Dinamikus context path beállítás Thymeleaf segítségével -->
+	<script th:inline="javascript">
+		const contextPath = /*[[@{/}]]*/'';
+	</script>
+
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="/js/store.js"></script>
-	<script src="/js/auth-ui.js"></script>
-	<script src="/js/auth.js"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/nouislider.min.js}"></script>
+	<script th:src="@{/js/jquery.zoom.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/store.js}"></script>
+	<script th:src="@{/js/auth-ui.js}"></script>
+	<script th:src="@{/js/auth.js}"></script>
 
 
 	<!-- Termék részletei Modal -->
@@ -527,7 +539,7 @@
 
 						<!-- KÉP -->
 						<div class="col-md-6 text-center">
-							<img id="modalImage" src="/img/logo.png" alt="Laptop"
+							<img id="modalImage" th:src="@{/img/logo.png}" alt="Laptop"
 								class="img-fluid rounded shadow-sm border"
 								style="max-height: 320px; object-fit: contain;">
 						</div>

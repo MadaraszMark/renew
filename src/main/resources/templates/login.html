@@ -6,26 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<title>Regisztráció - ReNew</title>
+<title>Bejelentkezés - ReNew</title>
+<base href="/jgch8q/">
 
-<!-- Google font -->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
-<!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
-
-<!-- Slick -->
-<link type="text/css" rel="stylesheet" href="../css/slick.css" />
-<link type="text/css" rel="stylesheet" href="../css/slick-theme.css" />
-
-<!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="../css/nouislider.min.css" />
-
-<!-- Font Awesome Icon -->
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-
-<!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
+	rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/slick.css}" rel="stylesheet" />
+<link th:href="@{/css/slick-theme.css}" rel="stylesheet" />
+<link th:href="@{/css/nouislider.min.css}" rel="stylesheet" />
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
 
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -51,9 +43,9 @@
 							Kecskemét Fő utca 21.</a></li>
 				</ul>
 				<ul class="header-links pull-right" id="authLinks">
-					<li><a href="/auth/register.html"><i
-							class="fa fa-user-plus"></i> Regisztráció</a></li>
-					<li><a href="/auth/login.html"><i class="fa fa-sign-in"></i>
+					<li><a th:href="@{/register}"><i class="fa fa-user-plus"></i>
+							Regisztráció</a></li>
+					<li><a th:href="@{/login}"><i class="fa fa-sign-in"></i>
 							Bejelentkezés</a></li>
 				</ul>
 			</div>
@@ -150,10 +142,11 @@
 			<div id="responsive-nav">
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav" id="navLinks">
-					<li><a href="/">Főoldal</a></li>
-					<li><a href="/store">Termékek</a></li>
-					<li><a href="/about">Rólunk</a></li>
-					<li class="active"><a href="/contact">Kapcsolat</a></li>
+					<li class="active"><a th:href="@{/}">Főoldal</a></li>
+					<li><a th:href="@{/store}">Termékek</a></li>
+					<li><a th:href="@{/about}">Rólunk</a></li>
+					<li><a th:href="@{/contact}">Kapcsolat</a></li>
+					<li><a th:href="@{/chart}">Diagram</a></li>
 				</ul>
 				<!-- /NAV -->
 			</div>
@@ -163,16 +156,16 @@
 	</nav>
 	<!-- /NAVIGATION -->
 
-	<!-- REGISZTRÁCIÓ -->
+	<!-- BEJELENTKEZÉS -->
 	<div class="section">
 		<div class="container">
 			<div class="row text-center">
 				<div class="col-md-6 col-md-offset-3">
-					<h2 class="text-uppercase">Regisztráció</h2>
-					<p class="text-muted" style="margin-bottom: 30px;">Hozz létre
-						egy új felhasználói fiókot az alábbi űrlap segítségével.</p>
+					<h2 class="text-uppercase">Bejelentkezés</h2>
+					<p class="text-muted" style="margin-bottom: 30px;">Jelentkezz
+						be az oldalra a fiókod adataival.</p>
 
-					<form id="registerForm" class="text-left">
+					<form id="loginForm" class="text-left">
 						<div class="form-group">
 							<label for="email">E-mail cím</label> <input type="email"
 								id="email" name="email" class="form-control"
@@ -185,29 +178,26 @@
 								placeholder="Add meg a jelszavad" required>
 						</div>
 
-						<div class="form-group">
-							<label for="confirmPassword">Jelszó megerősítése</label> <input
-								type="password" id="confirmPassword" name="confirmPassword"
-								class="form-control" placeholder="Írd be újra a jelszavad"
-								required>
-						</div>
-
 						<div class="text-center" style="margin-top: 25px;">
 							<button type="submit" class="btn btn-danger btn-lg shadow-sm">
-								<i class="fa fa-user-plus"></i> Regisztráció
+								<i class="fa fa-sign-in"></i> Bejelentkezés
 							</button>
 						</div>
 					</form>
 
-					<div id="registerMessage" class="text-center"
+					<div id="loginMessage" class="text-center"
 						style="margin-top: 25px;"></div>
+
+					<p class="text-muted" style="margin-top: 15px;">
+						Még nincs fiókod? <a th:href="@{/register}"
+							style="color: #d10024;">Regisztrálj itt</a>.
+					</p>
+
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- /REGISZTRÁCIÓ -->
-
-
+	<!-- /BEJELENTKEZÉS -->
 
 	<!-- NEWSLETTER -->
 	<div id="newsletter" class="section">
@@ -340,16 +330,23 @@
 		<!-- /bottom footer -->
 	</footer>
 	<!-- /FOOTER -->
+	
+	<!-- Dinamikus context path beállítás Thymeleaf segítségével -->
+	<script th:inline="javascript">
+		const contextPath = /*[[@{/}]]*/'';
+	</script>
 
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="../js/auth/register.js"></script>
-	<script src="/js/auth.js"></script>
-	
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/nouislider.min.js}"></script>
+	<script th:src="@{/js/jquery.zoom.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/store.js}"></script>
+	<script th:src="@{/js/auth-ui.js}"></script>
+	<script th:src="@{/js/auth.js}"></script>
+	<script th:src="@{/js/auth/login.js}"></script>
+
 </body>
 </html>

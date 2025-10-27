@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         // Adatok lekérése a backendtől
-        const response = await fetch("/api/chart/laptops-by-manufacturer");
+        const response = await fetch(`${contextPath}api/chart/laptops-by-manufacturer`);
 
         if (!response.ok) {
             throw new Error("Nem sikerült lekérni a diagram adatokat.");

@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("loginForm");
   const feedback = document.getElementById("loginMessage");
+  const basePath = document.querySelector('base')?.getAttribute('href') || '/';
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -15,10 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch("/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+      const res = await fetch(`${basePath}auth/login`, {
+  	method: "POST",
+  	headers: { "Content-Type": "application/json" },
+  	body: JSON.stringify({ email, password })
       });
 
       if (!res.ok) {
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       feedback.innerHTML = `<p class="text-success">✅ Sikeres bejelentkezés!</p>`;
-      setTimeout(() => (window.location.href = "/"), 1200);
+      setTimeout(() => (window.location.href = basePath), 1200);
     } catch (err) {
       console.error(err);
       feedback.innerHTML = `<p class="text-danger">⚠️ Hálózati hiba, próbáld újra!</p>`;

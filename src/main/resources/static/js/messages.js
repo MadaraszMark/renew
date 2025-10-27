@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const res = await fetch("/api/contact?page=0&size=50", {
+    const res = await fetch(`${contextPath}api/contact?page=0&size=50`, {
       headers: {
         "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json"

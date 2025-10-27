@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,27 +7,19 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <title>Üzenetek - ReNew</title>
+<base href="/jgch8q/">
 
 <!-- Google font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
 	rel="stylesheet">
 
-<!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-
-<!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-
-<!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
-
-<!-- Font Awesome Icon -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-
-<!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/slick.css}" rel="stylesheet" />
+<link th:href="@{/css/slick-theme.css}" rel="stylesheet" />
+<link th:href="@{/css/nouislider.min.css}" rel="stylesheet" />
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,10 +44,10 @@
 							Kecskemét Fő utca 21.</a></li>
 				</ul>
 				<ul class="header-links pull-right" id="authLinks">
-					<li><a href="/auth/register.html"><i
+					<li><a th:href="@{/register}"><i
 							class="fa fa-user-plus"></i> Regisztráció</a></li>
-					<li><a href="/auth/login.html"><i class="fa fa-sign-in"></i>
-							Bejelentkezés</a></li>
+					<li><a th:href="@{/login}"><i
+							class="fa fa-sign-in"></i> Bejelentkezés</a></li>
 				</ul>
 			</div>
 		</div>
@@ -150,12 +142,14 @@
 			<!-- responsive-nav -->
 			<div id="responsive-nav">
 				<!-- NAV -->
+				<!-- NAVIGATION -->
 				<ul class="main-nav nav navbar-nav" id="navLinks">
-					<li><a href="/">Főoldal</a></li>
-					<li><a href="/store">Termékek</a></li>
-					<li><a href="/about">Rólunk</a></li>
-					<li class="active"><a href="/contact">Kapcsolat</a></li>
+					<li><a th:href="@{/}">Főoldal</a></li>
+					<li><a th:href="@{/store}">Termékek</a></li>
+					<li><a th:href="@{/about}">Rólunk</a></li>
+					<li><a th:href="@{/contact}">Kapcsolat</a></li>
 				</ul>
+
 				<!-- /NAV -->
 			</div>
 			<!-- /responsive-nav -->
@@ -172,9 +166,8 @@
 					<h2 class="text-uppercase">
 						Beérkezett <span style="color: #d10024;">Üzenetek</span>
 					</h2>
-					<p class="text-muted" style="margin-bottom: 30px;">
-						Itt láthatod az általad küldött üzeneteket
-					</p>
+					<p class="text-muted" style="margin-bottom: 30px;">Itt láthatod
+						az általad küldött üzeneteket</p>
 
 					<!-- TÁBLÁZAT -->
 					<div class="table-responsive">
@@ -340,6 +333,11 @@
 		<!-- /bottom footer -->
 	</footer>
 	<!-- /FOOTER -->
+	
+	<!-- Dinamikus context path beállítás Thymeleaf segítségével -->
+	<script th:inline="javascript">
+		const contextPath = /*[[@{/}]]*/'';
+	</script>
 
 	<!-- jQuery Plugins -->
 	<script src="js/jquery.min.js"></script>
@@ -351,7 +349,7 @@
 	<script src="js/messages.js"></script>
 	<script src="/js/auth-ui.js"></script>
 	<script src="/js/auth.js"></script>
-	
-	
+
+
 </body>
 </html>

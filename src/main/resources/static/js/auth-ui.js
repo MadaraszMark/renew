@@ -1,32 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
   const authContainer = document.getElementById('authLinks');
-  if (!authContainer) return; // ha nincs ilyen elem, lépjen tovább
+  if (!authContainer) return;
 
+  const basePath = "/" + window.location.pathname.split("/")[1];
   const userData = localStorage.getItem('user');
   authContainer.innerHTML = '';
 
   if (!userData) {
     // Nem bejelentkezett felhasználó
     authContainer.innerHTML = `
-      <li><a href="/auth/register.html"><i class="fa fa-user-plus"></i> Regisztráció</a></li>
-      <li><a href="/auth/login.html"><i class="fa fa-sign-in"></i> Bejelentkezés</a></li>
+      <li><a href="${basePath}/login"><i class="fa fa-sign-in"></i> Bejelentkezés</a></li>
+      <li><a href="${basePath}/register"><i class="fa fa-user-plus"></i> Regisztráció</a></li>
     `;
   } else {
     const user = JSON.parse(userData);
     let html = '';
 
-    // 🔹 Ha USER → csak Üzenetek
-    if (user.role === 'USER') {
-      html += `<li><a href="/messages"><i class="fa fa-envelope"></i> Üzenetek</a></li>`;
-    }
-    
-    if (user.role === 'GUEST') {
-      html += `<li><a href="/messages"><i class="fa fa-envelope"></i> Üzenetek</a></li>`;
+    // 🔹 Ha USER vagy GUEST → csak Üzenetek
+    if (user.role === 'USER' || user.role === 'GUEST') {
+      html += `<li><a href="${basePath}/messages"><i class="fa fa-envelope"></i> Üzenetek</a></li>`;
     }
 
-    // 🔹 Ha ADMIN → csak Admin
+    // 🔹 Ha ADMIN → Admin panel
     if (user.role === 'ADMIN') {
-      html += `<li><a href="/admin"><i class="fa fa-cog"></i> Admin</a></li>`;
+      html += `<li><a href="${basePath}/admin"><i class="fa fa-cog"></i> Admin</a></li>`;
     }
 
     // 🔹 User e-mail és kijelentkezés
@@ -39,15 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
 async function logoutUser(e) {
   e.preventDefault();
   try {
-    await fetch('/auth/logout', { method: 'POST' });
+    await fetch(`${contextPath}auth/logout`, { method: 'POST' });
   } catch (err) {
     console.warn('Logout hiba:', err);
   } finally {
     localStorage.removeItem('user');
-    window.location.href = '/';
+    window.location.href = contextPath;
   }
 }

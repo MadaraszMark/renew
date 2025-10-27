@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+const basePath = document.querySelector('base')?.getAttribute('href') || '/';
   const form = document.getElementById("registerForm");
   const feedback = document.getElementById("registerMessage");
 
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch("/auth/register", {
+      const res = await fetch(`${basePath}auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       feedback.innerHTML = `<p class="text-success">✅ Sikeres regisztráció! Átirányítás...</p>`;
-      setTimeout(() => (window.location.href = "/"), 1500);
+      setTimeout(() => (window.location.href = basePath), 1500);
     } catch (err) {
       console.error(err);
       feedback.innerHTML = `<p class="text-danger">⚠️ Hálózati hiba, próbáld újra!</p>`;

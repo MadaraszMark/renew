@@ -4,18 +4,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tableBody = document.getElementById("laptopTableBody");
   let form = document.getElementById("addLaptopForm");
   const errorDiv = document.getElementById("laptopError");
+  const contextPath = window.contextPath || '/';
 
   // 🔒 Csak admin láthatja
   if (!token || !userData) {
     alert("🔐 Be kell jelentkezned az admin felülethez!");
-    window.location.href = "/auth/login.html";
+    window.location.href = `${contextPath}login`;
     return;
   }
 
   const user = JSON.parse(userData);
   if (user.role !== "ADMIN") {
     alert("🚫 Nincs jogosultságod a laptopkezelő eléréséhez!");
-    window.location.href = "/";
+    window.location.href = contextPath;
     return;
   }
 
@@ -33,8 +34,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
       const [procRes, osRes] = await Promise.all([
-        fetch("/api/processors"),
-        fetch("/api/os")
+        fetch(`${contextPath}api/processors`),
+        fetch(`${contextPath}api/os`)
       ]);
 
       if (!procRes.ok || !osRes.ok) throw new Error("Nem sikerült betölteni a legördülőket.");
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ========================
   async function loadLaptops() {
     try {
-      const res = await fetch("/api/laptops");
+      const res = await fetch(`${contextPath}api/laptops`);
       if (!res.ok) throw new Error("Nem sikerült betölteni a laptopokat.");
       const data = await res.json();
       const laptops = data.content || data;
@@ -137,7 +138,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     try {
-      const res = await fetch("/api/laptops", {
+      const res = await fetch(`${contextPath}api/laptops`, {
         method: "POST",
         headers,
         body: JSON.stringify(newLaptop)
@@ -152,114 +153,81 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
   
-// ========================
-// ✏️ LAPTOP MÓDOSÍTÁSA (dropdown fix + stabil form logika)
-// ========================
-window.editLaptop = async (id) => {
-  try {
-    const res = await fetch(`/api/laptops/${id}`);
-    if (!res.ok) throw new Error("Nem található a laptop ID: " + id);
-    const l = await res.json();
+  // ========================
+  // ✏️ LAPTOP MÓDOSÍTÁSA
+  // ========================
+  window.editLaptop = async (id) => {
+    try {
+      const res = await fetch(`${contextPath}api/laptops/${id}`);
+      if (!res.ok) throw new Error("Nem található a laptop ID: " + id);
+      const l = await res.json();
 
-    // 🧩 Dropdown referenciák
-    const procSelect = document.getElementById("processorSelect");
-    const osSelect = document.getElementById("osSelect");
+      const procSelect = document.getElementById("processorSelect");
+      const osSelect = document.getElementById("osSelect");
 
-    // 🧩 Kitöltjük az űrlapot
-    form.gyarto.value = l.gyarto ?? "";
-    form.tipus.value = l.tipus ?? "";
-    form.kijelzo.value = l.kijelzo ?? "";
-    form.memoria.value = l.memoria ?? "";
-    form.merevlemez.value = l.merevlemez ?? "";
-    form.videoVezerlo.value = l.videoVezerlo ?? "";
-    form.ar.value = l.ar ?? "";
-    form.db.value = l.db ?? "";
-    // 🔽 Dropdown értékek beállítása (új)
-procSelect.value = l.processorId || "";
-osSelect.value = l.operatingSystemId || "";
+      form.gyarto.value = l.gyarto ?? "";
+      form.tipus.value = l.tipus ?? "";
+      form.kijelzo.value = l.kijelzo ?? "";
+      form.memoria.value = l.memoria ?? "";
+      form.merevlemez.value = l.merevlemez ?? "";
+      form.videoVezerlo.value = l.videoVezerlo ?? "";
+      form.ar.value = l.ar ?? "";
+      form.db.value = l.db ?? "";
+      procSelect.value = l.processorId || "";
+      osSelect.value = l.operatingSystemId || "";
 
+      const submitBtn = form.querySelector("button[type='submit']");
+      submitBtn.innerHTML = '<i class="fa fa-save"></i> Mentés';
+      submitBtn.classList.remove("btn-success");
+      submitBtn.classList.add("btn-primary");
 
-    // 🧩 Kiválasztjuk a megfelelő procit és OS-t
-    if (l.processorName) {
-      const target = l.processorName.trim().toLowerCase();
-      for (let opt of procSelect.options) {
-        if (target.includes(opt.textContent.trim().toLowerCase())) {
-          opt.selected = true;
-          break;
+      const newForm = form.cloneNode(true);
+      form.parentNode.replaceChild(newForm, form);
+
+      newForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const updatedLaptop = {
+          gyarto: newForm.gyarto.value,
+          tipus: newForm.tipus.value,
+          kijelzo: parseFloat(newForm.kijelzo.value),
+          memoria: parseInt(newForm.memoria.value),
+          merevlemez: parseInt(newForm.merevlemez.value),
+          videoVezerlo: newForm.videoVezerlo.value,
+          ar: parseInt(newForm.ar.value),
+          db: parseInt(newForm.db.value),
+          processorId: parseInt(newForm.processorSelect.value),
+          operatingSystemId: parseInt(newForm.osSelect.value)
+        };
+
+        try {
+          const updateRes = await fetch(`${contextPath}api/laptops/${id}`, {
+            method: "PUT",
+            headers,
+            body: JSON.stringify(updatedLaptop)
+          });
+
+          if (!updateRes.ok) throw new Error("Nem sikerült frissíteni a laptopot.");
+
+          alert("✅ Laptop sikeresen módosítva!");
+          newForm.reset();
+
+          submitBtn.innerHTML = '<i class="fa fa-plus"></i> Hozzáadás';
+          submitBtn.classList.remove("btn-primary");
+          submitBtn.classList.add("btn-success");
+
+          await loadLaptops();
+          form = newForm;
+
+        } catch (err) {
+          errorDiv.innerHTML = `<p class="text-danger">${err.message}</p>`;
         }
-      }
+      });
+    } catch (err) {
+      console.error("Szerkesztési hiba:", err);
+      errorDiv.innerHTML = `<p class="text-danger">${err.message}</p>`;
     }
-
-    if (l.operatingSystemName) {
-      const target = l.operatingSystemName.trim().toLowerCase();
-      for (let opt of osSelect.options) {
-        if (target.includes(opt.textContent.trim().toLowerCase())) {
-          opt.selected = true;
-          break;
-        }
-      }
-    }
-
-    // 🔄 Gomb átállítása
-    const submitBtn = form.querySelector("button[type='submit']");
-    submitBtn.innerHTML = '<i class="fa fa-save"></i> Mentés';
-    submitBtn.classList.remove("btn-success");
-    submitBtn.classList.add("btn-primary");
-
-    // 💡 Előző listener leválasztása, majd új hozzárendelése
-    const newForm = form.cloneNode(true);
-    form.parentNode.replaceChild(newForm, form);
-
-    // 🔄 Új event handler (UPDATE)
-    newForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const updatedLaptop = {
-        gyarto: newForm.gyarto.value,
-        tipus: newForm.tipus.value,
-        kijelzo: parseFloat(newForm.kijelzo.value),
-        memoria: parseInt(newForm.memoria.value),
-        merevlemez: parseInt(newForm.merevlemez.value),
-        videoVezerlo: newForm.videoVezerlo.value,
-        ar: parseInt(newForm.ar.value),
-        db: parseInt(newForm.db.value),
-        processorId: parseInt(newForm.processorSelect.value),
-        operatingSystemId: parseInt(newForm.osSelect.value)
-      };
-
-      try {
-        const updateRes = await fetch(`/api/laptops/${id}`, {
-          method: "PUT",
-          headers,
-          body: JSON.stringify(updatedLaptop)
-        });
-
-        if (!updateRes.ok) throw new Error("Nem sikerült frissíteni a laptopot.");
-
-        alert("✅ Laptop sikeresen módosítva!");
-        newForm.reset();
-
-        // 🔙 Gomb visszaállítása
-        submitBtn.innerHTML = '<i class="fa fa-plus"></i> Hozzáadás';
-        submitBtn.classList.remove("btn-primary");
-        submitBtn.classList.add("btn-success");
-
-        // 🔄 Tábla újratöltése
-        await loadLaptops();
-
-        // ⚙️ Az új formot visszarakjuk a globális form változóba, hogy továbbra is működjön
-        form = newForm;
-
-      } catch (err) {
-        errorDiv.innerHTML = `<p class="text-danger">${err.message}</p>`;
-      }
-    });
-  } catch (err) {
-    console.error("Szerkesztési hiba:", err);
-    errorDiv.innerHTML = `<p class="text-danger">${err.message}</p>`;
-  }
-};
-
+  };
 
   // ========================
   // 🗑️ LAPTOP TÖRLÉSE
@@ -268,7 +236,7 @@ osSelect.value = l.operatingSystemId || "";
     if (!confirm("Biztosan törlöd ezt a laptopot?")) return;
 
     try {
-      const res = await fetch(`/api/laptops/${id}`, {
+      const res = await fetch(`${contextPath}api/laptops/${id}`, {
         method: "DELETE",
         headers
       });

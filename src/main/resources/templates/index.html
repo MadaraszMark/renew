@@ -7,27 +7,18 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <title>Főoldal - ReNew</title>
-
+<base href="/jgch8q/">
 <!-- Google font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
 	rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/slick.css}" rel="stylesheet" />
+<link th:href="@{/css/slick-theme.css}" rel="stylesheet" />
+<link th:href="@{/css/nouislider.min.css}" rel="stylesheet" />
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
 
-<!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-
-<!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-
-<!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
-
-<!-- Font Awesome Icon -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-
-<!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,10 +43,8 @@
 							Kecskemét Fő utca 21.</a></li>
 				</ul>
 				<ul class="header-links pull-right" id="authLinks">
-					<li><a href="/auth/register.html"><i
-							class="fa fa-user-plus"></i> Regisztráció</a></li>
-					<li><a href="/auth/login.html"><i class="fa fa-sign-in"></i>
-							Bejelentkezés</a></li>
+					<li><a th:href="@{/register}"><iclass="fa fa-user-plus"></i> Regisztráció</a></li>
+					<li><a th:href="@{/login}"><iclass="fa fa-sign-in"></i> Bejelentkezés</a></li>
 				</ul>
 			</div>
 		</div>
@@ -151,11 +140,11 @@
 			<div id="responsive-nav">
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav" id="navLinks">
-					<li class="active"><a href="/">Főoldal</a></li>
-					<li><a href="/store">Termékek</a></li>
-					<li><a href="/about">Rólunk</a></li>
-					<li><a href="/contact">Kapcsolat</a></li>
-					<li><a href="/chart">Diagram</a></li>
+				<li class="active"><a th:href="@{/}">Főoldal</a></li>
+					<li><a th:href="@{/store}">Termékek</a></li>
+					<li><a th:href="@{/about}">Rólunk</a></li>
+					<li><a th:href="@{/contact}">Kapcsolat</a></li>
+					<li><a th:href="@{/chart}">Diagram</a></li>
 				</ul>
 				<!-- /NAV -->
 			</div>
@@ -747,16 +736,22 @@ startCountdown(72);
 		<!-- /bottom footer -->
 	</footer>
 	<!-- /FOOTER -->
+	
+	<!-- Dinamikus context path beállítás Thymeleaf segítségével -->
+	<script th:inline="javascript">
+		const contextPath = /*[[@{/}]]*/'';
+	</script>
 
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="/js/auth-ui.js"></script>
-<script src="/js/auth.js"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/nouislider.min.js}"></script>
+	<script th:src="@{/js/jquery.zoom.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/store.js}"></script>
+	<script th:src="@{/js/auth-ui.js}"></script>
+	<script th:src="@{/js/auth.js}"></script>
 
 </body>
 </html>

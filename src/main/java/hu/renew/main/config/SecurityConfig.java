@@ -30,35 +30,27 @@ public class SecurityConfig {
 			.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(auth -> auth
 
-				// 🔓 Nyilvános frontend fájlok (HTML, JS, CSS stb.)
+				// 🔓 Nyilvános frontend fájlok
 				.requestMatchers("/", "/index.html", "/css/**", "/js/**", "/img/**", "/fonts/**",
 						"/favicon.ico", "/store/**", "/contact/**", "/auth/**", "/messages/**",
-						"/chart/**", "/about/**")
+						"/chart/**", "/register/**", "/login/**", "/about/**")
 				.permitAll()
 
-				// 🔓 Auth végpontok
-				.requestMatchers("/auth/register", "/auth/login").permitAll()
+				.requestMatchers("/register", "/login").permitAll()
 
-				// 🔓 Publikus API-k (processzorok, OS, laptopok, diagram)
 				.requestMatchers("/api/processors/**", "/api/os/**", "/api/laptops/**", "/api/chart/**")
 				.permitAll()
 
-				// 🔓 Kosár REST API (publikus elérés)
 				.requestMatchers("/api/cart/**").permitAll()
 
-				// 🔓 Üzenetküldés engedélyezett
 				.requestMatchers(HttpMethod.POST, "/api/contact").permitAll()
 
-				// 🔒 Üzenetek lekérése (bejelentkezett)
 				.requestMatchers(HttpMethod.GET, "/api/contact").authenticated()
 
-				// 🟢 az admin oldal statikusan betölthető
 				.requestMatchers("/admin", "/admin/**", "/admin.html").permitAll()
 
-				// 🔒 az admin API továbbra is csak ROLE_ADMIN
 				.requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
 
-				// 🔒 Minden más védett
 				.anyRequest().authenticated()
 			)
 			.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
